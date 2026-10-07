@@ -3,7 +3,8 @@
     "allow": [
       "WebFetch(domain:planning.wedding)",
       "WebFetch(domain:www.githubstatus.com)",
-      "Bash(python3 -)"
+      "Bash(python3 -)",
+      "WebFetch(domain:annaydavid.com)"
     ]
   }
 }
