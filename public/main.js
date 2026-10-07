@@ -1,6 +1,9 @@
 (() => {
   const WEDDING = new Date('2027-05-08T12:30:00+02:00');
+  const WEDDING_END = new Date('2027-05-09T00:00:00+02:00'); // fin de fiesta
+  const VENUE = 'Finca Meu Lar, C/ de les Basses Noves, 37, 03112 Alacant, Alicante';
   const RSVP_URL = 'https://planning.wedding/website/annaydavid'; // formulario de Wedding Assistant
+  const SPOTIFY_URL = ''; // ← enlace de invitación de la playlist colaborativa (vacío = no se muestra)
   const LANGS = ['es', 'de', 'en'];
   const T = window.TRANSLATIONS;
   let lang = 'es';
@@ -33,6 +36,22 @@
     document.querySelectorAll('[data-date-long]').forEach((el) => {
       el.textContent = `${longDate.charAt(0).toUpperCase()}${longDate.slice(1)} · 12:30`;
     });
+
+    updateGoogleCalendarLink();
+  }
+
+  // ---------- Añadir al calendario ----------
+  // Google se genera aquí (con el título en el idioma elegido); Apple/Outlook usan el .ics de public/
+  function updateGoogleCalendarLink() {
+    const utc = (d) => d.toISOString().replace(/[-:]|\.\d{3}/g, ''); // 20270508T103000Z
+    const params = new URLSearchParams({
+      action: 'TEMPLATE',
+      text: t('calendar.event'),
+      details: `${t('calendar.details')}\n${location.origin}`,
+      location: VENUE,
+    });
+    const link = document.querySelector('[data-calendar-google]');
+    link.href = `https://calendar.google.com/calendar/render?${params}&dates=${utc(WEDDING)}/${utc(WEDDING_END)}`;
   }
 
   document.querySelectorAll('[data-lang]').forEach((btn) => {
@@ -87,6 +106,28 @@
   // Todos los botones "Confirmar" apuntan aquí. Mientras esté vacío, llevan a la sección #confirmar.
   if (RSVP_URL) {
     document.querySelectorAll('[data-rsvp-link]').forEach((a) => { a.href = RSVP_URL; });
+  }
+
+  // ---------- Playlist colaborativa ----------
+  if (SPOTIFY_URL) {
+    document.querySelector('[data-spotify-link]').href = SPOTIFY_URL;
+    document.querySelector('[data-spotify]').hidden = false;
+  }
+
+  // ---------- Sobre de bienvenida ----------
+  // Se muestra si el <head> ha añadido la clase show-intro (primera visita o ?intro).
+  // Secuencia: pausa → se rompe el lacre y se abre la solapa (2,6 s) → fundido sobre/web
+  const root = document.documentElement;
+  if (root.classList.contains('show-intro')) {
+    const intro = document.querySelector('[data-intro]');
+    const quick = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const ms = quick
+      ? { open: 0, leave: 0, end: 600 }
+      : { open: 900, leave: 3500, end: 5100 }; // ← tiempos en milisegundos desde que carga la página
+    localStorage.setItem('introSeen', '1');
+    setTimeout(() => intro.classList.add('is-open'), ms.open);
+    setTimeout(() => { intro.classList.add('is-leaving'); root.classList.add('intro-reveal'); }, ms.leave);
+    setTimeout(() => root.classList.remove('show-intro', 'intro-reveal'), ms.end);
   }
 
   // ---------- Aparición suave al hacer scroll ----------

@@ -2,7 +2,7 @@
 // Para cambiar un texto, edítalo aquí (las claves coinciden con data-i18n en index.html).
 window.TRANSLATIONS = {
   es: {
-    'meta.title': 'Anna & David · 8 de mayo de 2027',
+    'meta.title': 'Anna & David',
 
     'nav.program': 'Programa',
     'nav.venue': 'Lugar',
@@ -21,6 +21,10 @@ window.TRANSLATIONS = {
     'countdown.minutes': 'min',
     'countdown.seconds': 'seg',
     'countdown.done': '¡Hoy es el día!',
+
+    'calendar.label': 'Guárdalo en tu calendario',
+    'calendar.event': 'Boda de Anna & David',
+    'calendar.details': 'Ceremonia 12:30 · Cóctel 13:30 · Banquete 15:30 · Fiesta 18:00',
 
     'welcome.kicker': 'Bienvenidos',
     'welcome.title': 'Como en casa',
@@ -65,11 +69,15 @@ window.TRANSLATIONS = {
     'rsvp.note': 'Solo te llevará un minuto. ¡Cuantos más jugadores, mejor partida!',
     'rsvp.button': 'Confirmar asistencia',
 
-    'footer.love': 'Hecho con cariño, en casa. Test',
+    'music.title': 'Pon tú la música',
+    'music.text': 'Hemos creado una playlist colaborativa: añade esas canciones que no te dejan quedarte sentado.',
+    'music.button': 'Añadir canciones',
+
+    'footer.love': 'Hecho con cariño, en casa',
   },
 
   de: {
-    'meta.title': 'Anna & David · 8. Mai 2027',
+    'meta.title': 'Anna & David',
 
     'nav.program': 'Ablauf',
     'nav.venue': 'Ort',
@@ -88,6 +96,10 @@ window.TRANSLATIONS = {
     'countdown.minutes': 'Min.',
     'countdown.seconds': 'Sek.',
     'countdown.done': 'Heute ist der große Tag!',
+
+    'calendar.label': 'Im Kalender speichern',
+    'calendar.event': 'Hochzeit von Anna & David',
+    'calendar.details': 'Trauung 12:30 · Sektempfang 13:30 · Hochzeitsessen 15:30 · Party 18:00',
 
     'welcome.kicker': 'Willkommen',
     'welcome.title': 'Wie zu Hause',
@@ -132,11 +144,15 @@ window.TRANSLATIONS = {
     'rsvp.note': 'Das Formular ist auf Spanisch, aber ganz einfach: „Nombre y apellidos“ = Vor- und Nachname, „Asistencia“ = ob du kommst, „Restricciones alimentarias“ = Allergien, „Acompañantes“ = Begleitpersonen.',
     'rsvp.button': 'Jetzt zusagen',
 
+    'music.title': 'Du bestimmst die Musik',
+    'music.text': 'Wir haben eine gemeinsame Playlist erstellt: Füge die Songs hinzu, bei denen niemand sitzen bleiben kann.',
+    'music.button': 'Songs hinzufügen',
+
     'footer.love': 'Mit Liebe gemacht, zu Hause',
   },
 
   en: {
-    'meta.title': 'Anna & David · May 8, 2027',
+    'meta.title': 'Anna & David',
 
     'nav.program': 'Schedule',
     'nav.venue': 'Venue',
@@ -155,6 +171,10 @@ window.TRANSLATIONS = {
     'countdown.minutes': 'min',
     'countdown.seconds': 'sec',
     'countdown.done': 'Today’s the day!',
+
+    'calendar.label': 'Save the date in your calendar',
+    'calendar.event': 'Anna & David’s wedding',
+    'calendar.details': 'Ceremony 12:30 · Cocktail hour 13:30 · Banquet 15:30 · Party 18:00',
 
     'welcome.kicker': 'Welcome',
     'welcome.title': 'Make yourself at home',
@@ -198,6 +218,10 @@ window.TRANSLATIONS = {
     'rsvp.intro': 'Please let us know by March 8, 2027.',
     'rsvp.note': 'The form is in Spanish, but it’s easy: “Nombre y apellidos” = full name, “Asistencia” = whether you’re coming, “Restricciones alimentarias” = allergies, “Acompañantes” = plus-ones.',
     'rsvp.button': 'RSVP now',
+
+    'music.title': 'You pick the music',
+    'music.text': 'We’ve made a collaborative playlist: add the songs that always get you on the dance floor.',
+    'music.button': 'Add songs',
 
     'footer.love': 'Made with love, at home',
   },

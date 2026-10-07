@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Anna & David//Boda//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:boda-anna-david-20270508@annaydavid
+DTSTAMP:20261007T000000Z
+DTSTART:20270508T103000Z
+DTEND:20270508T220000Z
+SUMMARY:Anna & David · Boda · Hochzeit · Wedding
+LOCATION:Finca Meu Lar\, C/ de les Basses Noves\, 37\, 03112 Alacant\, Alic
+ ante
+DESCRIPTION:Ceremonia / Trauung / Ceremony 12:30\nCóctel / Sektempfang / C
+ ocktail hour 13:30\nBanquete / Hochzeitsessen / Banquet 15:30\nFiesta / Pa
+ rty 18:00
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Anna & David · 08.05.2027
+END:VALARM
+END:VEVENT
+END:VCALENDAR
