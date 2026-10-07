@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anna &amp; David · 08.05.2027</title>
+  <meta name="description" content="Anna & David · 8 de mayo de 2027 · Finca Meu Lar, Alicante">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Fraunces:opsz,wght,SOFT@9..144,400..700,100&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+  <!-- Navegación -->
+  <header class="nav">
+    <a class="nav__brand" href="#inicio">A <span>&amp;</span> D</a>
+    <nav class="nav__links" aria-label="Secciones">
+      <a href="#programa" data-i18n="nav.program">Programa</a>
+      <a href="#lugar" data-i18n="nav.venue">Lugar</a>
+      <a href="#dresscode" data-i18n="nav.dresscode">Dress code</a>
+      <a href="#regalo" data-i18n="nav.gift">Regalo</a>
+      <a href="#confirmar" class="nav__cta" data-rsvp-link data-i18n="nav.rsvp">Confirmar</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Idioma / Sprache / Language">
+      <button type="button" data-lang="es">ES</button>
+      <button type="button" data-lang="de">DE</button>
+      <button type="button" data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Portada -->
+    <section class="hero" id="inicio">
+      <p class="hero__kicker" data-i18n="hero.kicker">¡Nos casamos!</p>
+      <h1 class="hero__names">Anna <span class="amp">&amp;</span> David</h1>
+      <p class="hero__date">
+        <span data-date-long>sábado, 8 de mayo de 2027</span>
+        <span class="dot" aria-hidden="true"></span>
+        <span>Finca Meu Lar · Alicante</span>
+      </p>
+      <figure class="hero__art">
+        <img src="img/finca-acuarela.webp" alt="" width="2000" height="1414" data-i18n-alt="hero.alt">
+      </figure>
+      <p class="hero__tagline" data-i18n="hero.tagline">Nos casamos y queremos que os sintáis como en casa.</p>
+      <a class="btn" href="#confirmar" data-rsvp-link data-i18n="hero.cta">Confirmar asistencia</a>
+    </section>
+
+    <div class="checks" aria-hidden="true"></div>
+
+    <!-- Cuenta atrás -->
+    <section class="countdown">
+      <h2 class="countdown__title" data-i18n="countdown.title">Cuenta atrás para la gran partida</h2>
+      <div class="countdown__tiles" data-countdown>
+        <div class="tile"><span class="tile__num" data-unit="days">000</span><span class="tile__label" data-i18n="countdown.days">días</span></div>
+        <div class="tile"><span class="tile__num" data-unit="hours">00</span><span class="tile__label" data-i18n="countdown.hours">horas</span></div>
+        <div class="tile"><span class="tile__num" data-unit="minutes">00</span><span class="tile__label" data-i18n="countdown.minutes">min</span></div>
+        <div class="tile"><span class="tile__num" data-unit="seconds">00</span><span class="tile__label" data-i18n="countdown.seconds">seg</span></div>
+      </div>
+      <p class="countdown__done" data-countdown-done hidden data-i18n="countdown.done">¡Hoy es el día!</p>
+    </section>
+
+    <!-- Bienvenida -->
+    <section class="section welcome reveal">
+      <figure class="polaroid">
+        <img src="img/anna-david.webp" alt="Anna y David" width="2000" height="1200" loading="lazy">
+        <figcaption>Anna &amp; David</figcaption>
+      </figure>
+      <div class="welcome__text">
+        <p class="kicker"><span class="die" data-die="1"></span><span data-i18n="welcome.kicker">Bienvenidos</span></p>
+        <h2 data-i18n="welcome.title">Como en casa</h2>
+        <p data-i18n="welcome.p1">Hemos jugado muchas partidas juntos, pero esta es la más importante.</p>
+        <p data-i18n="welcome.p2">Así que venid con hambre, con ganas de bailar y sin prisa por iros.</p>
+      </div>
+    </section>
+
+    <!-- Programa -->
+    <section class="section program reveal" id="programa">
+      <header class="section__head">
+        <p class="kicker"><span class="die" data-die="2"></span><span data-i18n="program.kicker">Cómo se juega</span></p>
+        <h2 data-i18n="program.title">Programa del día</h2>
+      </header>
+
+      <div class="board">
+        <span class="board__marker board__marker--start">
+          <svg class="meeple" viewBox="0 0 100 100" aria-hidden="true"><use href="#meeple"/></svg>
+          <span data-i18n="program.start">Salida</span>
+        </span>
+
+        <ol class="board__track">
+          <li class="square square--teal">
+            <span class="die" data-die="1"></span>
+            <svg class="square__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="14" r="5.5"/><circle cx="15" cy="14" r="5.5"/><path d="M10 4.5l2-2 2 2-2 2.5z"/></svg>
+            <time>12:30</time>
+            <h3 data-i18n="program.ceremony">Ceremonia</h3>
+            <p data-i18n="program.ceremonyText">Empieza la partida.</p>
+          </li>
+          <li class="square square--terracotta">
+            <span class="die" data-die="2"></span>
+            <svg class="square__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16l-8 9z"/><path d="M12 13v7M8 20.5h8"/><path d="M15 4l3-2.5"/></svg>
+            <time>13:30</time>
+            <h3 data-i18n="program.cocktail">Cóctel</h3>
+            <p data-i18n="program.cocktailText">Brindis y picoteo.</p>
+          </li>
+          <li class="square square--mustard">
+            <span class="die" data-die="3"></span>
+            <svg class="square__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6"/><path d="M3 3v6a2 2 0 0 0 2 2v10M5 3v6M7 3v6a2 2 0 0 1-2 2M20 3c-2 1-3 4-3 8h3v10"/></svg>
+            <time>15:30</time>
+            <h3 data-i18n="program.banquet">Banquete</h3>
+            <p data-i18n="program.banquetText">A la mesa.</p>
+          </li>
+          <li class="square square--sage">
+            <span class="die" data-die="4"></span>
+            <svg class="square__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg>
+            <time>18:00</time>
+            <h3 data-i18n="program.party">Fiesta</h3>
+            <p data-i18n="program.partyText">Abrimos la pista.</p>
+          </li>
+          <li class="square square--ink">
+            <span class="die" data-die="5"></span>
+            <svg class="square__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
+            <time>00:00</time>
+            <h3 data-i18n="program.end">Fin de fiesta</h3>
+            <p data-i18n="program.endText">Última ronda.</p>
+          </li>
+        </ol>
+
+        <span class="board__marker board__marker--end">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V3M5 4h13l-3 4 3 4H5"/></svg>
+          <span data-i18n="program.finish">Meta</span>
+        </span>
+      </div>
+    </section>
+
+    <div class="checks" aria-hidden="true"></div>
+
+    <!-- Lugar -->
+    <section class="section venue reveal" id="lugar">
+      <div class="venue__info">
+        <p class="kicker"><span class="die" data-die="3"></span><span data-i18n="venue.kicker">Dónde jugamos</span></p>
+        <h2>Finca Meu Lar</h2>
+        <p data-i18n="venue.text">Ceremonia y celebración en el mismo lugar.</p>
+        <address>
+          C/ de les Basses Noves, 37<br>
+          03112 Alacant, Alicante
+        </address>
+        <a class="btn btn--outline" target="_blank" rel="noopener"
+           href="https://www.google.com/maps/search/?api=1&amp;query=Finca%20Meu%20Lar%2C%20C%2F%20de%20les%20Basses%20Noves%2037%2C%2003112%20Alacant"
+           data-i18n="venue.directions">Cómo llegar</a>
+      </div>
+      <div class="venue__map">
+        <iframe title="Mapa · Finca Meu Lar" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                src="https://maps.google.com/maps?q=Finca%20Meu%20Lar%2C%20C%2F%20de%20les%20Basses%20Noves%2037%2C%2003112%20Alacant&amp;z=14&amp;output=embed"></iframe>
+      </div>
+    </section>
+
+    <!-- Dress code + Regalo -->
+    <section class="section cards reveal">
+      <article class="card" id="dresscode">
+        <span class="card__corner card__corner--tl"><span class="die" data-die="4"></span></span>
+        <span class="card__corner card__corner--br"><span class="die" data-die="4"></span></span>
+        <p class="kicker" data-i18n="dresscode.kicker">Qué me pongo</p>
+        <h2>Dress code</h2>
+        <p class="card__lead" data-i18n="dresscode.style">Elegante, pero cómodo</p>
+        <p data-i18n="dresscode.text">Como en casa, solo que muy guapos.</p>
+        <p class="card__note" data-i18n="dresscode.note">Parte de la celebración es en el jardín.</p>
+        <p class="swatch"><span class="swatch__color"></span><span data-i18n="dresscode.color">Nuestro color</span></p>
+      </article>
+
+      <article class="card" id="regalo">
+        <span class="card__corner card__corner--tl"><span class="die" data-die="5"></span></span>
+        <span class="card__corner card__corner--br"><span class="die" data-die="5"></span></span>
+        <p class="kicker" data-i18n="gift.kicker">Un detalle</p>
+        <h2 data-i18n="gift.title">Regalo</h2>
+        <p data-i18n="gift.text">Vuestra presencia es nuestro mejor regalo.</p>
+        <div class="iban">
+          <span class="iban__label">IBAN</span>
+          <code class="iban__number" data-iban>ES00 0000 0000 0000 0000 0000</code>
+          <span class="iban__label" data-i18n="gift.holder">Titular</span>
+          <span>Anna &amp; David</span>
+        </div>
+        <button type="button" class="btn btn--small" data-copy-iban data-i18n="gift.copy">Copiar IBAN</button>
+      </article>
+    </section>
+
+    <div class="checks" aria-hidden="true"></div>
+
+    <!-- Confirmación de asistencia -->
+    <section class="section rsvp reveal" id="confirmar">
+      <header class="section__head">
+        <p class="kicker"><span class="die" data-die="6"></span><span data-i18n="rsvp.kicker">Tu turno</span></p>
+        <h2 data-i18n="rsvp.title">¿Te unes a la partida?</h2>
+        <p data-i18n="rsvp.intro">Confírmanos tu asistencia.</p>
+      </header>
+
+      <div class="rsvp__box">
+        <svg class="meeple" viewBox="0 0 100 100" aria-hidden="true"><use href="#meeple"/></svg>
+        <p data-i18n="rsvp.note">Te llevamos a nuestra página de confirmación.</p>
+        <a class="btn" href="#confirmar" data-rsvp-link data-i18n="rsvp.button">Confirmar asistencia</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p class="footer__names">Anna &amp; David</p>
+    <p>08 · 05 · 2027 · Finca Meu Lar</p>
+    <p class="footer__love" data-i18n="footer.love">Hecho con cariño, en casa</p>
+  </footer>
+
+  <!-- Iconos reutilizables -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="meeple" viewBox="0 0 100 100">
+      <path d="M50 6c10 0 17 7 17 16 0 5-2 9-5 12 9 2 26 6 31 10 4 3 2 10-3 11l-17 4 15 30c2 4-1 8-5 8H66c-3 0-5-2-6-4L50 75 40 93c-1 2-3 4-6 4H17c-4 0-7-4-5-8l15-30-17-4c-5-1-7-8-3-11 5-4 22-8 31-10-3-3-5-7-5-12 0-9 7-16 17-16z"/>
+    </symbol>
+  </svg>
+
+  <script src="i18n.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
