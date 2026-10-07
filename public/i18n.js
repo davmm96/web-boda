@@ -141,7 +141,7 @@ window.TRANSLATIONS = {
     'rsvp.kicker': 'Du bist dran',
     'rsvp.title': 'Spielst du mit?',
     'rsvp.intro': 'Bitte gib uns bis zum 8. März 2027 Bescheid.',
-    'rsvp.note': 'Das Formular ist auf Spanisch, aber ganz einfach: „Nombre y apellidos“ = Vor- und Nachname, „Asistencia“ = ob du kommst, „Restricciones alimentarias“ = Allergien, „Acompañantes“ = Begleitpersonen.',
+    'rsvp.note': 'Dauert nur eine Minute. Je mehr Mitspieler, desto besser die Partie!',
     'rsvp.button': 'Jetzt zusagen',
 
     'music.title': 'Du bestimmst die Musik',
@@ -216,7 +216,7 @@ window.TRANSLATIONS = {
     'rsvp.kicker': 'Your turn',
     'rsvp.title': 'Are you in?',
     'rsvp.intro': 'Please let us know by March 8, 2027.',
-    'rsvp.note': 'The form is in Spanish, but it’s easy: “Nombre y apellidos” = full name, “Asistencia” = whether you’re coming, “Restricciones alimentarias” = allergies, “Acompañantes” = plus-ones.',
+    'rsvp.note': 'It only takes a minute. The more players, the better the game!',
     'rsvp.button': 'RSVP now',
 
     'music.title': 'You pick the music',

@@ -2,7 +2,12 @@
   const WEDDING = new Date('2027-05-08T12:30:00+02:00');
   const WEDDING_END = new Date('2027-05-09T00:00:00+02:00'); // fin de fiesta
   const VENUE = 'Finca Meu Lar, C/ de les Basses Noves, 37, 03112 Alacant, Alicante';
-  const RSVP_URL = 'https://planning.wedding/website/annaydavid'; // formulario de Wedding Assistant
+  // Formularios de Wedding Assistant, uno por idioma
+  const RSVP_URLS = {
+    es: 'https://submit.rsvp/annaydavid',
+    de: 'https://submit.rsvp/annaydavid-de',
+    en: 'https://submit.rsvp/annaydavid-en',
+  };
   const SPOTIFY_URL = ''; // ← enlace de invitación de la playlist colaborativa (vacío = no se muestra)
   const LANGS = ['es', 'de', 'en'];
   const T = window.TRANSLATIONS;
@@ -38,6 +43,9 @@
     });
 
     updateGoogleCalendarLink();
+
+    // Todos los botones "Confirmar" llevan al formulario del idioma elegido
+    document.querySelectorAll('[data-rsvp-link]').forEach((a) => { a.href = RSVP_URLS[lang]; });
   }
 
   // ---------- Añadir al calendario ----------
@@ -101,12 +109,6 @@
       setTimeout(() => { copyBtn.textContent = t('gift.copy'); }, 2000);
     } catch { /* el usuario puede copiarlo a mano */ }
   });
-
-  // ---------- Confirmación de asistencia (Wedding Assistant) ----------
-  // Todos los botones "Confirmar" apuntan aquí. Mientras esté vacío, llevan a la sección #confirmar.
-  if (RSVP_URL) {
-    document.querySelectorAll('[data-rsvp-link]').forEach((a) => { a.href = RSVP_URL; });
-  }
 
   // ---------- Playlist colaborativa ----------
   if (SPOTIFY_URL) {
