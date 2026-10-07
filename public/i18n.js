@@ -65,7 +65,7 @@ window.TRANSLATIONS = {
     'rsvp.note': 'Solo te llevará un minuto. ¡Cuantos más jugadores, mejor partida!',
     'rsvp.button': 'Confirmar asistencia',
 
-    'footer.love': 'Hecho con cariño, en casa',
+    'footer.love': 'Hecho con cariño, en casa. Test',
   },
 
   de: {
