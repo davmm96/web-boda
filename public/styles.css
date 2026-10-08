@@ -496,7 +496,7 @@ a { color: var(--teal); }
     position: absolute;
     left: 50%;
     margin: 0 0 0 calc(var(--w) / -2);
-    top: calc((100% - var(--h) - var(--flap)) / 2 + var(--flap)); /* centrado contando la solapa abierta */
+    top: calc(100% - var(--h) + 2px); /* pegado al borde inferior (2 px por debajo): la tarjeta, más alta que el sobre, no asoma por abajo */
   }
 }
 

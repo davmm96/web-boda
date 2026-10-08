@@ -122,7 +122,7 @@
   // la invitación sale y, sin pararse, crece hasta pantalla completa → la invitación es ya la propia web
   const root = document.documentElement;
   const INTRO_MS = {   // ← tiempos en milisegundos
-    closed: 2500,      // sobre cerrado antes de abrirse
+    closed: 1000,      // sobre cerrado antes de abrirse
     toCard: 2400,      // desde que empieza a abrirse la solapa hasta que se mueve la tarjeta (justo pasada la mitad)
     card: 2800,        // la tarjeta sale (0,8 s) y crece (2 s), todo en un solo movimiento
   };
