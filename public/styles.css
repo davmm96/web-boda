@@ -470,14 +470,10 @@ a { color: var(--teal); }
   overflow: hidden;
   background: var(--grain) 0 0 / 180px, radial-gradient(circle at 50% 55%, var(--paper), var(--cream) 75%);
   background-blend-mode: soft-light, normal;
-  transition: opacity 1s ease, visibility 1s;
 }
-.intro.is-leaving { opacity: 0; visibility: hidden; }
 
-/* La web aparece con un fundido mientras el sobre desaparece */
-.show-intro .nav, .show-intro main, .show-intro .footer { opacity: 0; }
-.nav, main, .footer { transition: opacity 1s ease .2s; }
-.show-intro.intro-reveal .nav, .show-intro.intro-reveal main, .show-intro.intro-reveal .footer { opacity: 1; }
+/* La web real queda oculta debajo; al final la tarjeta (copia idéntica) la tapa entera y se cambia una por otra */
+.show-intro body > .nav, .show-intro body > main, .show-intro body > .footer { opacity: 0; }
 
 /* Medidas del sobre: --h alto · --flap alto de la solapa · --pocket punta del bolsillo (se ve al abrir) */
 .envelope {
@@ -490,7 +486,6 @@ a { color: var(--teal); }
   width: var(--w);
   height: var(--h);
   margin-top: var(--flap); /* sitio arriba para la solapa abierta */
-  perspective: 2200px;
 }
 /* Móvil (vertical): el mismo sobre que en escritorio, dimensionado por la altura de la pantalla.
    Queda más ancho que la pantalla y centrado, así que las esquinas laterales se salen por los lados */
@@ -505,7 +500,7 @@ a { color: var(--teal); }
   }
 }
 
-.envelope__back, .envelope__front,
+.envelope__back, .envelope__front, .envelope__hinge,
 .envelope__flap, .envelope__flap-out, .envelope__flap-in, .envelope__flap-shadow, .envelope__flap-shadow > div {
   position: absolute;
   inset: 0;
@@ -519,44 +514,37 @@ a { color: var(--teal); }
   background-blend-mode: soft-light, soft-light, normal;
 }
 
+/* Capas, de atrás adelante: fondo (1) · solapa abierta (2) · tarjeta (3) · bolsillo (4) · sombra (5) · solapa cerrada (6) */
 .envelope__back {
+  z-index: 1;
   --tint: linear-gradient(#012a31, #013a43);
   border-radius: 10px;
   box-shadow: 0 30px 60px -20px rgb(1 47 54 / .6), 0 8px 20px -8px rgb(1 47 54 / .4);
 }
 
-/* Invitación: tarjeta blanca quieta dentro del sobre. Solo se ve por la abertura en V,
-   por eso la acuarela va arriba y centrada (la casa cae en la zona visible) */
-.envelope__card {
-  position: absolute;
-  inset: 4% 5% 0;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding-top: 3%;
-  background: #fff;
-  border-radius: 6px 6px 0 0;
-  box-shadow: 0 0 0 1px rgb(0 0 0 / .06), 0 2px 8px rgb(0 0 0 / .3);
-}
-.envelope__card img { width: 62%; height: auto; }
-
 .envelope__front {
+  z-index: 4;
   --tint: linear-gradient(var(--teal), #013f48);
   border-radius: 10px;
   clip-path: polygon(0 0, 50% var(--pocket), 100% 0, 100% 100%, 0 100%);
 }
 
 /* Sombra de la solapa cerrada sobre el sobre; se desvanece al abrir */
-.envelope__flap-shadow { filter: blur(6px); opacity: .45; transition: opacity 1s ease .4s; }
+.envelope__flap-shadow { z-index: 5; filter: blur(6px); opacity: .45; transition: opacity 1s ease .4s; }
 .envelope__flap-shadow > div { background: #000; clip-path: polygon(0 0, 100% 0, 50% calc(var(--flap) + 8px)); }
 .is-open .envelope__flap-shadow { opacity: 0; }
+
+/* Bisagra: da la perspectiva al giro y cambia de capa a mitad del giro (cuando la solapa está de canto),
+   para que la tarjeta salga por delante de la solapa abierta */
+.envelope__hinge { z-index: 6; perspective: 2200px; transition: z-index 0s linear 2.25s; }
+.is-open .envelope__hinge { z-index: 2; }
 
 /* Solapa superior: gira despacio sobre su borde de arriba, con el lacre pegado.
    Curva equilibrada para que no se quede casi quieta al final */
 .envelope__flap {
   transform-origin: top;
   transform-style: preserve-3d;
-  transition: transform 4s cubic-bezier(.42, 0, .45, 1);
+  transition: transform 4.5s cubic-bezier(.42, 0, .45, 1);
 }
 .is-open .envelope__flap { transform: rotateX(180deg); }
 
@@ -610,6 +598,26 @@ a { color: var(--teal); }
 }
 /* Monograma en oro claro sobre cera oscura (contraste ≥ 4.7:1 en todo el sello) con sombra de relieve */
 .envelope__seal .logo { width: 78%; color: #f2d993; filter: drop-shadow(0 1px 1px rgb(0 0 0 / .6)); }
+
+/* Invitación: del tamaño exacto de la pantalla, con una copia de la parte de arriba de la web.
+   main.js la encoge y la coloca dentro del sobre; luego la saca y la devuelve a su tamaño real */
+.intro__card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  visibility: hidden; /* hasta que main.js la coloque en el sobre */
+  background: var(--cream);
+  transform-origin: 0 0;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / .05), 0 10px 40px rgb(0 0 0 / .3);
+}
+.intro__card.is-ready { visibility: visible; }
+
+/* Mientras la tarjeta crece, el sobre se disuelve pieza a pieza (no el sobre entero, para no alterar las capas) */
+.is-dissolving .envelope > * { opacity: 0 !important; transition: opacity .8s ease !important; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

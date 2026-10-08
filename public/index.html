@@ -35,20 +35,23 @@
   <div class="intro" data-intro aria-hidden="true">
     <div class="envelope">
       <div class="envelope__back paper-tex"></div>
-      <!-- Invitación dentro del sobre: se ve por la abertura al levantarse la solapa -->
-      <div class="envelope__card"><img src="img/finca-acuarela.webp" alt="" width="2000" height="1414"></div>
       <div class="envelope__front paper-tex"></div>
       <div class="envelope__flap-shadow"><div></div></div>
-      <div class="envelope__flap">
-        <div class="envelope__flap-out paper-tex"></div>
-        <div class="envelope__flap-in paper-tex"></div>
-        <div class="envelope__seal">
-          <div class="envelope__seal-face"><span class="logo"></span></div>
+      <div class="envelope__hinge">
+        <div class="envelope__flap">
+          <div class="envelope__flap-out paper-tex"></div>
+          <div class="envelope__flap-in paper-tex"></div>
+          <div class="envelope__seal">
+            <div class="envelope__seal-face"><span class="logo"></span></div>
+          </div>
+          <!-- Espalda del lacre: al abrirse queda detrás de la solapa y asoma por la punta -->
+          <div class="envelope__seal envelope__seal--back"></div>
         </div>
-        <!-- Espalda del lacre: al abrirse queda detrás de la solapa y asoma por la punta -->
-        <div class="envelope__seal envelope__seal--back"></div>
       </div>
     </div>
+    <!-- Invitación: main.js la rellena con una copia de la parte de arriba de la web, la mete en el sobre,
+         la saca y la hace crecer hasta pantalla completa, donde coincide con la web real -->
+    <div class="intro__card" data-intro-card inert></div>
   </div>
 
   <!-- Navegación -->
