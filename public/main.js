@@ -118,14 +118,15 @@
 
   // ---------- Sobre de bienvenida ----------
   // Se muestra si el <head> ha añadido la clase show-intro (primera visita o ?intro).
-  // Secuencia: pausa → se rompe el lacre y se abre la solapa (2,6 s) → fundido sobre/web
+  // Secuencia: sobre cerrado 1,2 s → la solapa se abre con el lacre (4 s, en styles.css) →
+  // el fundido sobre/web (1 s) empieza cuando la solapa llega arriba, sin esperar a que se pare
   const root = document.documentElement;
   if (root.classList.contains('show-intro')) {
     const intro = document.querySelector('[data-intro]');
     const quick = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const ms = quick
       ? { open: 0, leave: 0, end: 600 }
-      : { open: 900, leave: 3500, end: 5100 }; // ← tiempos en milisegundos desde que carga la página
+      : { open: 1200, leave: 4800, end: 6200 }; // ← tiempos en milisegundos desde que carga la página
     localStorage.setItem('introSeen', '1');
     setTimeout(() => intro.classList.add('is-open'), ms.open);
     setTimeout(() => { intro.classList.add('is-leaving'); root.classList.add('intro-reveal'); }, ms.leave);
