@@ -17,21 +17,22 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preload" href="fonts/Monterchi-Book.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="fonts/Monterchi-Extrabold.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Fraunces:opsz,wght,SOFT@9..144,400..700,100&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;700&amp;text=0123456789&amp;display=swap">
   <link rel="stylesheet" href="styles.css">
   <script>
+    // Sobre de bienvenida: se muestra siempre al abrir la web.
+    // Para desactivarlo (p. ej. mientras se hacen pruebas), poner `false`
+    const SHOW_INTRO = true;
     document.documentElement.classList.add('js');
-    // Sobre de bienvenida: solo en la primera visita (o siempre que la URL lleve ?intro)
-    if (!localStorage.getItem('introSeen') || new URLSearchParams(location.search).has('intro')) {
-      document.documentElement.classList.add('show-intro');
-    }
+    if (SHOW_INTRO) document.documentElement.classList.add('show-intro');
   </script>
 </head>
 <body>
 
-  <!-- Sobre de bienvenida (primera visita) -->
+  <!-- Sobre de bienvenida (al abrir la web) -->
   <div class="intro" data-intro aria-hidden="true">
     <div class="envelope">
       <div class="envelope__back paper-tex"></div>
@@ -75,18 +76,16 @@
 
     <!-- Portada -->
     <section class="hero" id="inicio">
-      <p class="hero__kicker" data-i18n="hero.kicker">¡Nos casamos!</p>
-      <h1 class="hero__names">Anna <span class="amp">&amp;</span> David</h1>
+      <!-- Título con la tipografía de la invitación (imagen en img/titulo.png); el texto queda para Google y lectores de pantalla -->
+      <h1 class="hero__names"><span class="hero__title" aria-hidden="true"></span><span class="sr-only" data-i18n="hero.title">Anna y David</span></h1>
       <p class="hero__date">
         <span data-date-long>sábado, 8 de mayo de 2027</span>
-        <span class="dot" aria-hidden="true"></span>
+        <span class="hero__date-sep" aria-hidden="true">·</span>
         <span>Finca Meu Lar · Alicante</span>
       </p>
       <figure class="hero__art">
         <img src="img/finca-acuarela.webp" alt="" width="2000" height="1414" data-i18n-alt="hero.alt">
       </figure>
-      <p class="hero__tagline" data-i18n="hero.tagline">Nos casamos y queremos que os sintáis como en casa.</p>
-      <a class="btn" href="#confirmar" data-rsvp-link data-i18n="hero.cta">Confirmar asistencia</a>
     </section>
 
     <div class="checks" aria-hidden="true"></div>
@@ -110,12 +109,18 @@
 
     <!-- Bienvenida -->
     <section class="section welcome reveal">
-      <figure class="polaroid">
-        <img src="img/anna-david.webp" alt="Anna y David" width="2000" height="1200" loading="lazy">
-        <figcaption>Anna &amp; David</figcaption>
+      <!-- Carrusel de fotos dentro de la polaroid: pasa solo y al tocar la foto avanza.
+           Para cambiar las fotos, cambia el src (y el alt) de cada <img>; puede haber las que quieras -->
+      <figure class="polaroid carousel" data-carousel aria-roledescription="carrusel" aria-label="Fotos">
+        <div class="carousel__track">
+          <img src="img/anna-david.webp" alt="Anna y David" width="2000" height="1200" loading="lazy" style="object-position: 78% center">
+          <img src="img/finca-acuarela.webp" alt="Acuarela de la Finca Meu Lar" width="2000" height="1414" loading="lazy">
+          <img src="img/anna-david.webp" alt="Anna y David" width="2000" height="1200" loading="lazy" style="object-position: 78% center">
+          <img src="img/finca-acuarela.webp" alt="Acuarela de la Finca Meu Lar" width="2000" height="1414" loading="lazy">
+          <img src="img/anna-david.webp" alt="Anna y David" width="2000" height="1200" loading="lazy" style="object-position: 78% center">
+        </div>
       </figure>
       <div class="welcome__text">
-        <p class="kicker"><span class="die" data-die="1"></span><span data-i18n="welcome.kicker">Bienvenidos</span></p>
         <h2 data-i18n="welcome.title">Como en casa</h2>
         <p data-i18n="welcome.p1">Hemos jugado muchas partidas juntos, pero esta es la más importante.</p>
         <p data-i18n="welcome.p2">Así que venid con hambre, con ganas de bailar y sin prisa por iros.</p>
@@ -125,58 +130,37 @@
     <!-- Programa -->
     <section class="section program reveal" id="programa">
       <header class="section__head">
-        <p class="kicker"><span class="die" data-die="2"></span><span data-i18n="program.kicker">Cómo se juega</span></p>
-        <h2 data-i18n="program.title">Programa del día</h2>
+        <h2><span class="title-img title-img--program" aria-hidden="true"></span><span class="sr-only" data-i18n="program.title">Programa</span></h2>
       </header>
 
       <div class="board">
-        <span class="board__marker board__marker--start">
-          <svg class="meeple" viewBox="0 0 100 100" aria-hidden="true"><use href="#meeple"/></svg>
-          <span data-i18n="program.start">Salida</span>
-        </span>
-
         <ol class="board__track">
-          <li class="square square--teal">
-            <span class="die" data-die="1"></span>
-            <svg class="square__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="14" r="5.5"/><circle cx="15" cy="14" r="5.5"/><path d="M10 4.5l2-2 2 2-2 2.5z"/></svg>
+          <li class="square">
+            <img class="square__img" src="img/programa/llegada.webp" alt="" width="2000" height="1414" loading="lazy">
             <time>12:30</time>
+            <h3 data-i18n="program.arrival">Llegada</h3>
+          </li>
+          <li class="square">
+            <img class="square__img" src="img/programa/ceremonia.webp" alt="" width="2000" height="1414" loading="lazy">
+            <time>13:00</time>
             <h3 data-i18n="program.ceremony">Ceremonia</h3>
-            <p data-i18n="program.ceremonyText">Empieza la partida.</p>
           </li>
-          <li class="square square--terracotta">
-            <span class="die" data-die="2"></span>
-            <svg class="square__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16l-8 9z"/><path d="M12 13v7M8 20.5h8"/><path d="M15 4l3-2.5"/></svg>
-            <time>13:30</time>
+          <li class="square">
+            <img class="square__img" src="img/programa/coctel.webp" alt="" width="2000" height="1414" loading="lazy">
+            <time>14:00</time>
             <h3 data-i18n="program.cocktail">Cóctel</h3>
-            <p data-i18n="program.cocktailText">Brindis y picoteo.</p>
           </li>
-          <li class="square square--mustard">
-            <span class="die" data-die="3"></span>
-            <svg class="square__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6"/><path d="M3 3v6a2 2 0 0 0 2 2v10M5 3v6M7 3v6a2 2 0 0 1-2 2M20 3c-2 1-3 4-3 8h3v10"/></svg>
+          <li class="square">
+            <img class="square__img" src="img/programa/banquete.webp" alt="" width="2000" height="1414" loading="lazy">
             <time>15:30</time>
             <h3 data-i18n="program.banquet">Banquete</h3>
-            <p data-i18n="program.banquetText">A la mesa.</p>
           </li>
-          <li class="square square--sage">
-            <span class="die" data-die="4"></span>
-            <svg class="square__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg>
+          <li class="square">
+            <img class="square__img" src="img/programa/fiesta.webp" alt="" width="2000" height="1414" loading="lazy">
             <time>18:00</time>
             <h3 data-i18n="program.party">Fiesta</h3>
-            <p data-i18n="program.partyText">Abrimos la pista.</p>
-          </li>
-          <li class="square square--ink">
-            <span class="die" data-die="5"></span>
-            <svg class="square__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
-            <time>00:00</time>
-            <h3 data-i18n="program.end">Fin de fiesta</h3>
-            <p data-i18n="program.endText">Última ronda.</p>
           </li>
         </ol>
-
-        <span class="board__marker board__marker--end">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V3M5 4h13l-3 4 3 4H5"/></svg>
-          <span data-i18n="program.finish">Meta</span>
-        </span>
       </div>
     </section>
 
@@ -185,9 +169,8 @@
     <!-- Lugar -->
     <section class="section venue reveal" id="lugar">
       <div class="venue__info">
-        <p class="kicker"><span class="die" data-die="3"></span><span data-i18n="venue.kicker">Dónde jugamos</span></p>
-        <h2>Finca Meu Lar</h2>
-        <p data-i18n="venue.text">Ceremonia y celebración en el mismo lugar.</p>
+        <h2><span class="title-img title-img--venue" aria-hidden="true"></span><span class="sr-only">Finca Meu Lar</span></h2>
+        <p class="venue__text" data-i18n="venue.text">Ceremonia y celebración en el mismo lugar.</p>
         <address>
           C/ de les Basses Noves, 37<br>
           03112 Alacant, Alicante
@@ -204,31 +187,43 @@
 
     <!-- Dress code + Regalo -->
     <section class="section cards reveal">
-      <article class="card" id="dresscode">
-        <span class="card__corner card__corner--tl"><span class="die" data-die="4"></span></span>
-        <span class="card__corner card__corner--br"><span class="die" data-die="4"></span></span>
-        <p class="kicker" data-i18n="dresscode.kicker">Qué me pongo</p>
-        <h2>Dress code</h2>
-        <p class="card__lead" data-i18n="dresscode.style">Elegante, pero cómodo</p>
-        <p data-i18n="dresscode.text">Como en casa, solo que muy guapos.</p>
-        <p class="card__note" data-i18n="dresscode.note">Parte de la celebración es en el jardín.</p>
-        <p class="swatch"><span class="swatch__color"></span><span data-i18n="dresscode.color">Nuestro color</span></p>
-      </article>
-
-      <article class="card" id="regalo">
-        <span class="card__corner card__corner--tl"><span class="die" data-die="5"></span></span>
-        <span class="card__corner card__corner--br"><span class="die" data-die="5"></span></span>
-        <p class="kicker" data-i18n="gift.kicker">Un detalle</p>
-        <h2 data-i18n="gift.title">Regalo</h2>
-        <p data-i18n="gift.text">Vuestra presencia es nuestro mejor regalo.</p>
-        <div class="iban">
-          <span class="iban__label">IBAN</span>
-          <code class="iban__number" data-iban>ES00 0000 0000 0000 0000 0000</code>
-          <span class="iban__label" data-i18n="gift.holder">Titular</span>
-          <span>Anna &amp; David</span>
+      <!-- Dress code: tarjeta que se da la vuelta al tocarla (por detrás, el dorso con el corazón) -->
+      <div class="flip" id="dresscode" data-flip tabindex="0" role="button" aria-pressed="false" aria-label="Dress code">
+        <div class="flip__inner">
+          <article class="card flip__face flip__front">
+            <span class="card__corner card__corner--tl" aria-hidden="true"><img src="img/carta-a.webp" alt="" width="2000" height="1414" loading="lazy"></span>
+            <span class="card__corner card__corner--br" aria-hidden="true"><img src="img/carta-d.webp" alt="" width="2000" height="1414" loading="lazy"></span>
+            <h2><span class="title-img title-img--dresscode" aria-hidden="true"></span><span class="sr-only">Dress code</span></h2>
+            <p class="card__text" data-i18n="dresscode.text">Como en casa, solo que muy guapos.</p>
+          </article>
+          <div class="card flip__face flip__back" aria-hidden="true">
+            <span class="card__corner card__corner--tl"><img src="img/carta-a.webp" alt="" width="2000" height="1414" loading="lazy"></span>
+            <span class="card__corner card__corner--br"><img src="img/carta-d.webp" alt="" width="2000" height="1414" loading="lazy"></span>
+            <img src="img/carta-dorso.webp" alt="" width="2000" height="1414" loading="lazy">
+          </div>
         </div>
-        <button type="button" class="btn btn--small" data-copy-iban data-i18n="gift.copy">Copiar IBAN</button>
-      </article>
+      </div>
+
+      <!-- Regalo: tarjeta que se da la vuelta al tocarla (el botón y el IBAN no la giran) -->
+      <div class="flip" id="regalo" data-flip tabindex="0" role="button" aria-pressed="false" aria-label="Regalo">
+        <div class="flip__inner">
+          <article class="card flip__face flip__front">
+            <span class="card__corner card__corner--tl" aria-hidden="true"><img src="img/carta-d.webp" alt="" width="2000" height="1414" loading="lazy" class="is-flipped"></span>
+            <span class="card__corner card__corner--br" aria-hidden="true"><img src="img/carta-a.webp" alt="" width="2000" height="1414" loading="lazy" class="is-flipped"></span>
+            <h2><span class="title-img title-img--gift" aria-hidden="true"></span><span class="sr-only" data-i18n="gift.title">Regalos</span></h2>
+            <p class="gift__text" data-i18n="gift.text">Vuestra presencia es nuestro mayor regalo.</p>
+            <div class="iban">
+              <code class="iban__number" data-iban>ES00 0000 0000 0000 0000 0000</code>
+            </div>
+            <button type="button" class="btn btn--small" data-copy-iban data-i18n="gift.copy">Copiar IBAN</button>
+          </article>
+          <div class="card flip__face flip__back" aria-hidden="true">
+            <span class="card__corner card__corner--tl"><img src="img/carta-d.webp" alt="" width="2000" height="1414" loading="lazy" class="is-flipped"></span>
+            <span class="card__corner card__corner--br"><img src="img/carta-a.webp" alt="" width="2000" height="1414" loading="lazy" class="is-flipped"></span>
+            <img src="img/carta-dorso.webp" alt="" width="2000" height="1414" loading="lazy">
+          </div>
+        </div>
+      </div>
     </section>
 
     <div class="checks" aria-hidden="true"></div>
@@ -236,24 +231,17 @@
     <!-- Confirmación de asistencia -->
     <section class="section rsvp reveal" id="confirmar">
       <header class="section__head">
-        <p class="kicker"><span class="die" data-die="6"></span><span data-i18n="rsvp.kicker">Tu turno</span></p>
-        <h2 data-i18n="rsvp.title">¿Te unes a la partida?</h2>
-        <p data-i18n="rsvp.intro">Confírmanos tu asistencia.</p>
+        <h2><span class="title-img title-img--rsvp" aria-hidden="true"></span><span class="rsvp__title-text" data-i18n="rsvp.title">Confirma tu asistencia</span></h2>
       </header>
 
-      <div class="rsvp__box">
-        <svg class="meeple" viewBox="0 0 100 100" aria-hidden="true"><use href="#meeple"/></svg>
-        <p data-i18n="rsvp.note">Te llevamos a nuestra página de confirmación.</p>
-        <a class="btn" href="#confirmar" data-rsvp-link data-i18n="rsvp.button">Confirmar asistencia</a>
-      </div>
-
-      <div class="music" data-spotify hidden>
-        <svg class="music__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M6.5 9.2c3.8-1.1 8-.7 11 1.1M7.2 12.5c3.1-.9 6.4-.5 8.9 1M7.9 15.6c2.4-.6 4.8-.3 6.8.8"/></svg>
-        <div>
-          <h3 data-i18n="music.title">Pon tú la música</h3>
-          <p data-i18n="music.text">Añade tus canciones a nuestra playlist.</p>
+      <!-- Flores asomando por detrás de la carta: girasol arriba a la derecha, buganvilla abajo a la izquierda -->
+      <div class="rsvp__wrap">
+        <span class="rsvp__flowers rsvp__flowers--sun" aria-hidden="true"></span>
+        <span class="rsvp__flowers rsvp__flowers--bougainvillea" aria-hidden="true"></span>
+        <div class="rsvp__box">
+          <p data-i18n="rsvp.note">Confírmanos tu asistencia antes del 1 de abril de 2027. ¡Te esperamos!</p>
+          <a class="btn" href="#confirmar" data-rsvp-link data-i18n="rsvp.button">Confirmar asistencia</a>
         </div>
-        <a class="btn btn--small" data-spotify-link target="_blank" rel="noopener" href="#" data-i18n="music.button">Añadir canciones</a>
       </div>
     </section>
 
@@ -262,15 +250,8 @@
   <footer class="footer">
     <span class="logo footer__logo" aria-hidden="true"></span>
     <p>08 · 05 · 2027</p>
-    <p class="footer__love" data-i18n="footer.love">Hecho con cariño, en casa</p>
+    <p class="footer__love" data-i18n="footer.love">Hecho con cariño, amor y muchas acuarelas</p>
   </footer>
-
-  <!-- Iconos reutilizables -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <symbol id="meeple" viewBox="0 0 100 100">
-      <path d="M50 6c10 0 17 7 17 16 0 5-2 9-5 12 9 2 26 6 31 10 4 3 2 10-3 11l-17 4 15 30c2 4-1 8-5 8H66c-3 0-5-2-6-4L50 75 40 93c-1 2-3 4-6 4H17c-4 0-7-4-5-8l15-30-17-4c-5-1-7-8-3-11 5-4 22-8 31-10-3-3-5-7-5-12 0-9 7-16 17-16z"/>
-    </symbol>
-  </svg>
 
   <script src="i18n.js"></script>
   <script src="main.js"></script>

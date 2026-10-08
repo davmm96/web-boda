@@ -8,7 +8,6 @@
     de: 'https://submit.rsvp/annaydavid-de',
     en: 'https://submit.rsvp/annaydavid-en',
   };
-  const SPOTIFY_URL = ''; // ← enlace de invitación de la playlist colaborativa (vacío = no se muestra)
   const LANGS = ['es', 'de', 'en'];
   const T = window.TRANSLATIONS;
   let lang = 'es';
@@ -45,7 +44,12 @@
     updateGoogleCalendarLink();
 
     // Todos los botones "Confirmar" llevan al formulario del idioma elegido
-    document.querySelectorAll('[data-rsvp-link]').forEach((a) => { a.href = RSVP_URLS[lang]; });
+    // Se abren en una pestaña nueva (rel=noopener por seguridad), así la web de la boda sigue abierta
+    document.querySelectorAll('[data-rsvp-link]').forEach((a) => {
+      a.href = RSVP_URLS[lang];
+      a.target = '_blank';
+      a.rel = 'noopener';
+    });
   }
 
   // ---------- Añadir al calendario ----------
@@ -64,20 +68,6 @@
 
   document.querySelectorAll('[data-lang]').forEach((btn) => {
     btn.addEventListener('click', () => setLang(btn.dataset.lang));
-  });
-
-  // ---------- Dados (caras del 1 al 6) ----------
-  const PIPS = {
-    1: [[50, 50]],
-    2: [[28, 28], [72, 72]],
-    3: [[28, 28], [50, 50], [72, 72]],
-    4: [[28, 28], [72, 28], [28, 72], [72, 72]],
-    5: [[28, 28], [72, 28], [50, 50], [28, 72], [72, 72]],
-    6: [[28, 28], [72, 28], [28, 50], [72, 50], [28, 72], [72, 72]],
-  };
-  document.querySelectorAll('[data-die]').forEach((el) => {
-    const pips = PIPS[el.dataset.die].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="9"/>`).join('');
-    el.innerHTML = `<svg viewBox="0 0 100 100" aria-hidden="true"><rect x="4" y="4" width="92" height="92" rx="20"/>${pips}</svg>`;
   });
 
   // ---------- Cuenta atrás ----------
@@ -110,14 +100,8 @@
     } catch { /* el usuario puede copiarlo a mano */ }
   });
 
-  // ---------- Playlist colaborativa ----------
-  if (SPOTIFY_URL) {
-    document.querySelector('[data-spotify-link]').href = SPOTIFY_URL;
-    document.querySelector('[data-spotify]').hidden = false;
-  }
-
   // ---------- Sobre de bienvenida ----------
-  // Se muestra si el <head> ha añadido la clase show-intro (primera visita o ?intro).
+  // Se muestra siempre al abrir la web (el <head> añade la clase show-intro).
   // Secuencia: sobre cerrado → se abre la solapa con el lacre (4,5 s, en styles.css) → mientras termina de abrirse,
   // la invitación sale y, sin pararse, crece hasta pantalla completa → la invitación es ya la propia web
   const root = document.documentElement;
@@ -133,7 +117,6 @@
     const card = intro.querySelector('[data-intro-card]');
     const nav = document.querySelector('body > .nav');
     const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-    localStorage.setItem('introSeen', '1');
 
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
       root.classList.remove('show-intro');
@@ -152,6 +135,8 @@
       el.removeAttribute('id');
       [...el.attributes].forEach((a) => { if (a.name.startsWith('data-')) el.removeAttribute(a.name); });
     });
+    // Espera a que cargue Monterchi (máx. 2,5 s) para medir con la fuente definitiva y que al final todo coincida
+    await Promise.race([document.fonts.ready, wait(2500)]);
     card.style.paddingTop = `${nav.offsetHeight}px`;
 
     // Tamaño y posición de la tarjeta dentro del sobre (la tarjeta mide lo mismo que la pantalla y se escala)
@@ -191,6 +176,49 @@
     await nav.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 400, easing: 'ease-out' }).finished;
     nav.style.opacity = '';
   }
+
+  // ---------- Cartas que se dan la vuelta (Dress code y Regalo) ----------
+  // No gira al pulsar un botón o enlace de dentro (p. ej. "Copiar IBAN") ni al seleccionar texto para copiarlo
+  document.querySelectorAll('[data-flip]').forEach((card) => {
+    const toggle = () => {
+      const flipped = card.classList.toggle('is-flipped');
+      card.setAttribute('aria-pressed', flipped);
+    };
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('button, a') || String(window.getSelection())) return;
+      toggle();
+    });
+    card.addEventListener('keydown', (e) => {
+      if (e.target !== card) return;
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+    });
+  });
+
+  // ---------- Carrusel de la polaroid ----------
+  // Orden aleatorio en cada visita; pasa solo cada CAROUSEL_MS con un fundido.
+  // Al tocar la foto avanza y el temporizador vuelve a empezar
+  const CAROUSEL_MS = 10000;
+  document.querySelectorAll('[data-carousel]').forEach((carousel) => {
+    const photos = [...carousel.querySelectorAll('img')];
+    for (let i = photos.length - 1; i > 0; i--) { // baraja (Fisher-Yates)
+      const j = Math.floor(Math.random() * (i + 1));
+      [photos[i], photos[j]] = [photos[j], photos[i]];
+    }
+    let current = 0;
+    let timer;
+    photos[0].classList.add('is-active');
+    const show = (i) => {
+      photos[current].classList.remove('is-active');
+      current = (i + photos.length) % photos.length;
+      photos[current].classList.add('is-active');
+    };
+    const restart = () => {
+      clearInterval(timer);
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) timer = setInterval(() => show(current + 1), CAROUSEL_MS);
+    };
+    carousel.addEventListener('click', () => { show(current + 1); restart(); });
+    restart();
+  });
 
   // ---------- Aparición suave al hacer scroll ----------
   const observer = new IntersectionObserver((entries) => {
