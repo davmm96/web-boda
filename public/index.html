@@ -58,12 +58,8 @@
   <!-- Navegación -->
   <header class="nav">
     <a class="nav__brand" href="#inicio"><span class="logo" role="img" aria-label="Anna &amp; David"></span></a>
-    <nav class="nav__links" aria-label="Secciones">
-      <a href="#programa" data-i18n="nav.program">Programa</a>
-      <a href="#lugar" data-i18n="nav.venue">Lugar</a>
-      <a href="#dresscode" data-i18n="nav.dresscode">Dress code</a>
-      <a href="#regalo" data-i18n="nav.gift">Regalo</a>
-      <a href="#confirmar" class="nav__cta" data-rsvp-link data-i18n="nav.rsvp">Confirmar</a>
+    <nav class="nav__links" aria-label="Formulario">
+      <a href="#confirmar" class="nav__cta" data-rsvp-link data-i18n="nav.rsvp">Formulario</a>
     </nav>
     <div class="lang" role="group" aria-label="Idioma / Sprache / Language">
       <button type="button" data-lang="es">ES</button>
@@ -80,7 +76,6 @@
       <h1 class="hero__names"><span class="hero__title" aria-hidden="true"></span><span class="sr-only" data-i18n="hero.title">Anna y David</span></h1>
       <p class="hero__date">
         <span data-date-long>sábado, 8 de mayo de 2027</span>
-        <span class="hero__date-sep" aria-hidden="true">·</span>
         <span>Finca Meu Lar · Alicante</span>
       </p>
       <figure class="hero__art">
@@ -121,9 +116,9 @@
         </div>
       </figure>
       <div class="welcome__text">
-        <h2 data-i18n="welcome.title">Como en casa</h2>
-        <p data-i18n="welcome.p1">Hemos jugado muchas partidas juntos, pero esta es la más importante.</p>
-        <p data-i18n="welcome.p2">Así que venid con hambre, con ganas de bailar y sin prisa por iros.</p>
+        <h2><span class="title-img title-img--welcome" aria-hidden="true"></span><span class="sr-only" data-i18n="welcome.title">Bienvenidos</span></h2>
+        <p data-i18n="welcome.text">Bienvenidos a la web de nuestra boda.</p>
+        <p class="welcome__signature" data-i18n="welcome.signature">Anna y David</p>
       </div>
     </section>
 
@@ -239,8 +234,17 @@
         <span class="rsvp__flowers rsvp__flowers--sun" aria-hidden="true"></span>
         <span class="rsvp__flowers rsvp__flowers--bougainvillea" aria-hidden="true"></span>
         <div class="rsvp__box">
-          <p data-i18n="rsvp.note">Confírmanos tu asistencia antes del 1 de abril de 2027. ¡Te esperamos!</p>
-          <a class="btn" href="#confirmar" data-rsvp-link data-i18n="rsvp.button">Confirmar asistencia</a>
+          <p class="rsvp__deadline" data-i18n="rsvp.note">Confírmanos tu asistencia antes del 1 de abril de 2027.</p>
+          <!-- Los números abren un chat de WhatsApp (wa.me, con prefijo 34: funciona también desde Alemania) -->
+          <p class="rsvp__contact">
+            <span data-i18n="rsvp.contact">Si tenéis cualquier duda, no dudéis en contactarnos.</span>
+            <span class="rsvp__phones">
+              <span>Anna: <a href="https://wa.me/34678361597" target="_blank" rel="noopener">678 361 597</a></span>
+              <span>David: <a href="https://wa.me/34695811434" target="_blank" rel="noopener">695 811 434</a></span>
+            </span>
+          </p>
+          <p class="rsvp__closing" data-i18n="rsvp.closing">¡Te esperamos!</p>
+          <a class="btn" href="#confirmar" data-rsvp-link data-i18n="rsvp.button">Formulario de asistencia</a>
         </div>
       </div>
     </section>
@@ -250,7 +254,7 @@
   <footer class="footer">
     <span class="logo footer__logo" aria-hidden="true"></span>
     <p>08 · 05 · 2027</p>
-    <p class="footer__love" data-i18n="footer.love">Hecho con cariño, amor y muchas acuarelas</p>
+    <p class="footer__love" data-i18n="footer.love">Hecho con cariño y muchas horas de acuarelas</p>
   </footer>
 
   <script src="i18n.js"></script>

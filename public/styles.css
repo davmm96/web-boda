@@ -154,7 +154,7 @@ a { color: var(--teal); }
   display: inline-flex;
   align-items: center;
   line-height: 1;
-  padding: .55em 1em .45em;
+  padding: .66em 1em .34em; /* "Formulario": solo mayúscula y ascendentes, la tinta queda .16em alta → .32em más arriba */
   border-radius: 999px;
   background: var(--teal);
   color: var(--paper);
@@ -177,7 +177,6 @@ a { color: var(--teal); }
 .lang button[aria-pressed="true"] { background: var(--teal); color: var(--paper); }
 
 @media (max-width: 820px) {
-  .nav__links a:not(.nav__cta) { display: none; }
   .nav { gap: .8rem; }
 }
 
@@ -223,33 +222,37 @@ html[lang="en"] .title-img--program { --img: url(img/programa-en.png); --ar: 141
 /* "Finca Meu Lar": igual en los 3 idiomas, en dos líneas (más alta para que la letra mida lo mismo que en "Programa")
    y alineada a la izquierda como el resto de la columna */
 /* "Dress code": igual en los 3 idiomas */
+/* "Bienvenidos / Willkommen / Welcome": mismo alto en los 3 idiomas; alineado a la izquierda como el texto de su columna */
+.title-img--welcome { --img: url(img/bienvenidos-es.png); --ar: 1829 / 430; margin: 0 0 .4rem; }
+html[lang="de"] .title-img--welcome { --img: url(img/bienvenidos-de.png); --ar: 1808 / 430; }
+html[lang="en"] .title-img--welcome { --img: url(img/bienvenidos-en.png); --ar: 1449 / 430; }
 .title-img--dresscode { --img: url(img/titulo-dresscode.png); --ar: 1516 / 375; }
 /* "Regalos / Geschenke / Gifts": recortadas al mismo alto para que la letra mida igual en los 3 idiomas */
 .title-img--gift { --img: url(img/regalos-es.png); --ar: 1416 / 525; }
 html[lang="de"] .title-img--gift { --img: url(img/regalos-de.png); --ar: 1542 / 525; }
 html[lang="en"] .title-img--gift { --img: url(img/regalos-en.png); --ar: 917 / 525; }
-/* "Confirma tu asistencia": de momento solo hay imagen en castellano; en alemán e inglés se ve el título en texto */
+/* "Confirma tu asistencia": imagen en castellano e inglés; en alemán, de momento, el título en texto */
 .title-img--rsvp { --img: url(img/titulo-confirma.png); --ar: 1361 / 560; height: clamp(5rem, 11vw, 7.6rem); }
-html:not([lang="es"]) .title-img--rsvp { display: none; }
-html[lang="es"] .rsvp__title-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+/* Inglés: su imagen es un 3 % más alta (578 frente a 560 px), así que va un 3 % más grande para que la letra mida igual */
+html[lang="en"] .title-img--rsvp { --img: url(img/titulo-confirma-en.png); --ar: 1699 / 578; height: calc(clamp(5rem, 11vw, 7.6rem) * 1.032); }
+/* Alemán: aún sin imagen, se ve el título en texto */
+html[lang="de"] .title-img--rsvp { display: none; }
+html:not([lang="de"]) .rsvp__title-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .title-img--venue { --img: url(img/titulo-finca.png); --ar: 1588 / 741; height: clamp(5.6rem, 12vw, 8.5rem); margin: 0 0 .4rem; }
+/* Fecha y lugar siempre en dos líneas, sin separador. Cada línea va en una sola fila: el tamaño se calcula
+   para que quepa la más larga ("SÁBADO, 8 DE MAYO DE 2027 · 12:30", unos 20 em) en el ancho de la pantalla */
 .hero__date {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  gap: .4rem .4em; /* mismo hueco que los " · " de dentro del texto */
+  gap: .3rem;
   margin: 0 0 1.5rem;
-  font-size: 1.15rem;
+  font-size: min(1.15rem, calc((100vw - 2.5rem) / 21)); /* 2,5 rem = relleno lateral de la portada */
   letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--teal);
 }
-/* En pantallas estrechas: fecha y lugar en dos líneas, sin el punto suelto entre ambas */
-@media (max-width: 760px) {
-  .hero__date { flex-direction: column; }
-  .hero__date-sep { display: none; }
-}
+.hero__date > span { white-space: nowrap; }
 .hero__art { margin: 0 auto; max-width: 1180px; }
 /* Funde el papel de la acuarela con el fondo y difumina los bordes de la foto */
 .hero__art img {
@@ -273,11 +276,12 @@ html[lang="es"] .rsvp__title-text { position: absolute; width: 1px; height: 1px;
   font-weight: 400;
   margin-bottom: 1.8rem;
 }
-.countdown__tiles { display: flex; justify-content: center; gap: clamp(.6rem, 2vw, 1.2rem); flex-wrap: wrap; }
+/* Las 4 fichas siempre en una fila: tamaño y hueco se adaptan al ancho de la pantalla */
+.countdown__tiles { display: flex; justify-content: center; gap: clamp(.4rem, 2vw, 1.2rem); flex-wrap: nowrap; }
 /* Fichas tipo Scrabble */
 .tile {
   position: relative;
-  width: clamp(4.6rem, 15vw, 6.5rem);
+  width: clamp(3.2rem, 19vw, 6.5rem);
   aspect-ratio: 1;
   display: grid;
   place-items: center;
@@ -286,12 +290,12 @@ html[lang="es"] .rsvp__title-text { position: absolute; width: 1px; height: 1px;
   box-shadow: inset 0 -5px 0 rgb(0 0 0 / .12), 0 6px 14px rgb(0 0 0 / .25);
   color: var(--teal-dark);
 }
-.tile__num { font: 600 clamp(1.8rem, 5vw, 2.6rem) var(--serif); font-variant-numeric: tabular-nums; }
+.tile__num { font: 600 clamp(1.3rem, 6.5vw, 2.6rem) var(--serif); font-variant-numeric: tabular-nums; }
 .tile__label {
   position: absolute;
-  right: .5rem;
-  bottom: .35rem;
-  font-size: .68rem;
+  right: clamp(.3rem, 1.5vw, .5rem);
+  bottom: clamp(.2rem, 1vw, .35rem);
+  font-size: clamp(.55rem, 2.6vw, .68rem);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .05em;
@@ -314,6 +318,8 @@ html[lang="es"] .rsvp__title-text { position: absolute; width: 1px; height: 1px;
 /* Bienvenida */
 .welcome { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
 .welcome__text p { font-size: 1.12rem; color: #344446; }
+/* Firma al final del texto de bienvenida, como en una carta */
+.welcome__text .welcome__signature { margin-top: 1.2rem; font-size: 1.3rem; color: var(--teal); text-align: right; }
 .polaroid {
   margin: 0;
   padding: 14px 14px 56px; /* franja inferior vacía, como una polaroid de verdad */
@@ -532,16 +538,23 @@ html[lang="es"] .rsvp__title-text { position: absolute; width: 1px; height: 1px;
   text-align: center;
 }
 .rsvp__box p { white-space: pre-line; /* respeta los saltos de línea (\n) */ font: 400 1.2rem/1.45 var(--serif); color: var(--teal-dark); margin: 0 0 1.6rem; }
+/* Fecha límite · contacto · cierre: menos hueco entre ellos y más antes del botón */
+.rsvp__box .rsvp__deadline { margin-bottom: 1rem; }
+.rsvp__box .rsvp__contact { margin-bottom: 1rem; white-space: normal; } /* su HTML va en varias líneas: que no salgan como saltos */
+.rsvp__phones { display: flex; flex-wrap: wrap; justify-content: center; gap: .2rem 1.4rem; margin-top: .4rem; }
+.rsvp__phones > span { white-space: nowrap; }
+.rsvp__phones a { color: var(--teal); text-decoration: underline; text-underline-offset: 3px; }
 /* Móvil y tablet: la misma composición que en escritorio, escalada al ancho de pantalla (mismas proporciones
-   y mismos solapes, los translate de arriba). La carta va algo desplazada a la izquierda porque el girasol
-   sobresale más que la buganvilla; así todo cabe sin cortarse de 320 a 900 px */
+   y mismos solapes, los translate de arriba). La carta va centrada; mide 64vw para que el girasol, que sobresale
+   más que la buganvilla, quepa por la derecha sin cortarse (de 320 a 900 px) */
 @media (max-width: 900px) {
-  .rsvp__wrap { width: 68vw; max-width: none; margin: 22vw 0 0 calc(11vw - 1.25rem); } /* 1.25rem = relleno lateral de la sección */
+  .rsvp__wrap { width: 64vw; max-width: none; margin: 22vw auto 0; }
   .rsvp__flowers--sun, .rsvp__flowers--bougainvillea { width: 26vw; }
   .rsvp { padding-bottom: calc(16vw + 3rem); } /* sitio para la buganvilla bajo la carta */
   /* Carta más pequeña: menos relleno, texto y botón algo más pequeños */
   .rsvp__box { min-height: 0; padding: 1.5rem 1.1rem; }
   .rsvp__box p { font-size: 1rem; margin-bottom: 1.1rem; }
+  .rsvp__box .rsvp__deadline, .rsvp__box .rsvp__contact { margin-bottom: .8rem; }
   .rsvp__box .btn { font-size: 1rem; padding: .82em 1.3em .66em; }
 }
 
