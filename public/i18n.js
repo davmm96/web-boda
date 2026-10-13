@@ -37,7 +37,7 @@ window.TRANSLATIONS = {
     'dresscode.text': 'Guapos, cómodos y con ganas de fiesta hasta el final. Chicas, solo os pedimos dos cosas: vestidos que enseñen los zapatos para darlo todo bailando, y dejad el blanco y colores similares únicamente para la novia.',
 
     'gift.title': 'Regalos',
-    'gift.text': 'Vuestra presencia es nuestro mayor regalo.\nAun así, si deseáis hacernos un detalle para comenzar esta nueva etapa, os dejamos nuestro número de cuenta.\nPor favor, indicad vuestro nombre en el concepto para poder agradecéroslo.',
+    'gift.text': 'Vuestra presencia es nuestro mayor regalo.\nAun así, si deseáis hacernos un detalle para comenzar esta nueva etapa, os dejamos nuestro número de cuenta.\nPor favor, indicad vuestro nombre completo en el concepto para poder agradecéroslo.',
     'gift.copy': 'Copiar IBAN',
     'gift.copied': '¡Copiado!',
 
@@ -86,7 +86,7 @@ window.TRANSLATIONS = {
     'dresscode.text': 'Schick, bequem und mit Lust, bis zum Schluss zu feiern. Mädels, wir bitten euch nur um zwei Dinge: Kleider, bei denen man die Schuhe sieht, damit ihr beim Tanzen alles geben könnt – und Weiß und ähnliche Farben bitte nur der Braut überlassen.',
 
     'gift.title': 'Geschenke',
-    'gift.text': 'Eure Anwesenheit ist unser größtes Geschenk.\nWer uns dennoch eine Kleinigkeit für den Start in diesen neuen Lebensabschnitt schenken möchte, findet hier unsere Bankverbindung.\nBitte gebt im Verwendungszweck euren Namen an, damit wir uns bei euch bedanken können.',
+    'gift.text': 'Eure Anwesenheit ist unser größtes Geschenk.\nWer uns dennoch eine Kleinigkeit für den Start in diesen neuen Lebensabschnitt schenken möchte, findet hier unsere Bankverbindung.\nBitte gebt im Verwendungszweck euren vollständigen Namen an, damit wir uns bei euch bedanken können.',
     'gift.copy': 'IBAN kopieren',
     'gift.copied': 'Kopiert!',
 
@@ -135,7 +135,7 @@ window.TRANSLATIONS = {
     'dresscode.text': 'Looking good, comfortable and ready to party until the very end. Ladies, we only ask two things: dresses that show your shoes, so you can go all out on the dance floor, and please leave white and similar colours to the bride.',
 
     'gift.title': 'Gifts',
-    'gift.text': 'Having you there is the greatest gift of all.\nStill, if you’d like to give us something to help us start this new chapter, here are our bank details.\nPlease include your name in the payment reference so we can thank you.',
+    'gift.text': 'Having you there is the greatest gift of all.\nStill, if you’d like to give us something to help us start this new chapter, here are our bank details.\nPlease include your full name in the payment reference so we can thank you.',
     'gift.copy': 'Copy IBAN',
     'gift.copied': 'Copied!',
 

@@ -62,6 +62,19 @@ body {
 
 img { max-width: 100%; height: auto; display: block; }
 
+/* Textura de papel de acuarela en toda la web (en prueba). Para quitarla: borrar class="paper" del <body> */
+.paper { position: relative; }
+.paper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 60; /* por encima del contenido (y del menú fijo); la intro va por encima (z-index 100) */
+  pointer-events: none;
+  background: var(--watercolor) 0 0 / 320px, var(--grain) 0 0 / 180px;
+  mix-blend-mode: multiply;
+  opacity: .5;
+}
+
 /* Texto oculto a la vista pero legible por Google y lectores de pantalla */
 .sr-only {
   position: absolute;
@@ -95,8 +108,26 @@ a { color: var(--teal); }
   mask: url(img/logo.png) center / contain no-repeat;
 }
 
-/* Separador entre secciones: franja lisa del color de la web, como el pie */
-.checks { height: 18px; background: var(--teal); }
+/* Dos secciones seguidas sin separador entre ellas: un poco más juntas (la de abajo con la mitad de margen superior) */
+.section + .section { padding-top: clamp(2rem, 4.5vw, 3.25rem); }
+
+/* Separador entre secciones: dos líneas finas que se desvanecen hacia los lados y el monograma A&D en medio.
+   Todo se mide en proporción a la pantalla (con tope en escritorio) para que en móvil no ocupe todo el ancho */
+.sep {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(.8rem, 2.5vw, 1.4rem);
+  padding: clamp(1.5rem, 5vw, 3.5rem) 1.5rem; /* más espacio alrededor del separador */
+}
+.sep__line { flex: 0 1 clamp(70px, 24vw, 340px); height: 1px; }
+.sep__line--l { background: linear-gradient(to right, transparent, var(--teal)); }
+.sep__line--r { background: linear-gradient(to left, transparent, var(--teal)); }
+.sep__logo { width: clamp(48px, 8vw, 66px); flex: none; color: var(--teal); }
+/* Corazón de acuarela del dorso de las cartas: se encuadra solo el corazón (x 665–1390, y 270–1125 de 2000×1414).
+   Es más alto que ancho, así que va algo más estrecho que el logo para que pese lo mismo */
+.sep__heart { width: clamp(22px, 3.4vw, 32px); aspect-ratio: 725 / 855; flex: none; mix-blend-mode: multiply;
+  background: url(img/carta-dorso.webp) 52.2% 48.3% / 275.9% 165.4% no-repeat; }
 
 
 /* ---------- Botones ---------- */
@@ -470,19 +501,28 @@ html:not([lang="de"]) .rsvp__title-text { position: absolute; width: 1px; height
 /* Las dos cartas miden lo mismo (la fila las iguala); en Dress code, título y texto van centrados en vertical */
 #dresscode .flip__front { display: flex; flex-direction: column; justify-content: center; }
 
-.gift__text { white-space: pre-line; } /* respeta los saltos de línea (\n) del texto */
+.gift__text { white-space: pre-line; font-size: 1.15rem; line-height: 1.75; } /* respeta los saltos de línea (\n) del texto */
 /* Caja del IBAN con poco margen interior para que el número quepa en una sola fila, también en móvil */
 .iban {
   container-type: inline-size;
+  max-width: 19rem;
   display: grid;
   gap: .15rem;
-  margin: 1.4rem 0;
+  margin: 1.4rem auto;
   padding: .6rem .4rem;
   background: var(--teal-soft);
   border-radius: 12px;
 }
 /* Tamaño según el ancho real de la caja (5,3 % = cabe en una línea con margen); como mucho 1,15 rem */
-.iban__number { font: 600 min(1.15rem, 5.3cqi) ui-monospace, Menlo, monospace; color: var(--teal-dark); white-space: nowrap; }
+#regalo [data-copy-iban] { font-size: .9rem; padding: .7em 1.2em .56em; }
+.iban__number { font: 600 min(.98rem, 5.3cqi) ui-monospace, Menlo, monospace; color: var(--teal-dark); white-space: nowrap; }
+/* Regalos en móvil: es la carta con más texto; letra algo más pequeña y menos huecos para que no quede tan alargada */
+@media (max-width: 700px) {
+  #regalo .flip__front { padding-top: 3rem; padding-bottom: 3rem; }
+  #regalo .gift__text { font-size: .92rem; line-height: 1.5; margin: 0; }
+  #regalo h2 { margin-bottom: .6rem; }
+  #regalo .iban { margin: 1rem auto; }
+}
 
 @media (max-width: 700px) {
   .cards > :first-child, .cards > :last-child { transform: none; }
@@ -544,12 +584,16 @@ html:not([lang="de"]) .rsvp__title-text { position: absolute; width: 1px; height
 .rsvp__phones { display: flex; flex-wrap: wrap; justify-content: center; gap: .2rem 1.4rem; margin-top: .4rem; }
 .rsvp__phones > span { white-space: nowrap; }
 .rsvp__phones a { color: var(--teal); text-decoration: underline; text-underline-offset: 3px; }
+.rsvp__box .btn { font-size: 1rem; padding: .85em 1.5em .68em; }
 /* Móvil y tablet: la misma composición que en escritorio, escalada al ancho de pantalla (mismas proporciones
    y mismos solapes, los translate de arriba). La carta va centrada; mide 64vw para que el girasol, que sobresale
    más que la buganvilla, quepa por la derecha sin cortarse (de 320 a 900 px) */
 @media (max-width: 900px) {
   .rsvp__wrap { width: 64vw; max-width: none; margin: 22vw auto 0; }
   .rsvp__flowers--sun, .rsvp__flowers--bougainvillea { width: 26vw; }
+  /* Mismo saliente lateral para los dos ramos (en escritorio el girasol sale más), así el conjunto se ve centrado */
+  .rsvp__flowers--sun { transform: translate(50%, -60%); }
+  .rsvp__flowers--bougainvillea { transform: translate(-50%, 40%); }
   .rsvp { padding-bottom: calc(16vw + 3rem); } /* sitio para la buganvilla bajo la carta */
   /* Carta más pequeña: menos relleno, texto y botón algo más pequeños */
   .rsvp__box { min-height: 0; padding: 1.5rem 1.1rem; }
@@ -580,6 +624,11 @@ html:not([lang="de"]) .rsvp__title-text { position: absolute; width: 1px; height
 :root {
   --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.45'/></svg>");
   --mottle: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'><filter id='m' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='.004 .007' numOctaves='4' seed='7'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23m)' opacity='.35'/></svg>");
+  /* Sobre satinado: grano muy fino y suave + una banda de brillo en diagonal */
+  --grain-fine: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='f' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='1.7' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23f)' opacity='.3'/></svg>");
+  --sheen: linear-gradient(115deg, transparent 22%, rgb(255 255 255 / .025) 38%, rgb(255 255 255 / .065) 48%, rgb(255 255 255 / .025) 58%, transparent 74%);
+  /* Papel de acuarela (grano grueso): ruido iluminado de lado para que parezca relieve */
+  --watercolor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='w' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='.045' numOctaves='4' seed='3' stitchTiles='stitch' result='t'/><feDiffuseLighting in='t' lighting-color='white' surfaceScale='1.6'><feDistantLight azimuth='135' elevation='58'/></feDiffuseLighting></filter><rect width='100%' height='100%' filter='url(%23w)'/></svg>");
 }
 
 .intro { display: none; }
@@ -598,28 +647,29 @@ html:not([lang="de"]) .rsvp__title-text { position: absolute; width: 1px; height
 /* La web real queda oculta debajo; al final la tarjeta (copia idéntica) la tapa entera y se cambia una por otra */
 .show-intro body > .nav, .show-intro body > main, .show-intro body > .footer { opacity: 0; }
 
-/* Medidas del sobre: --h alto · --flap alto de la solapa · --pocket punta del bolsillo (se ve al abrir) */
+/* Medidas del sobre: --h alto · --flap alto de la solapa · --pocket punta del bolsillo (se ve al abrir).
+   Va centrado en la pantalla; su alto es como mucho el 46 % de la pantalla para que, al abrirse,
+   la solapa (58 % del alto del sobre) quepa por encima sin cortarse */
 .envelope {
-  --w: min(92vw, 94vh);
-  --w: min(92vw, 94svh);
+  --w: min(92vw, 69vh);
+  --w: min(92vw, 69svh);
   --h: calc(var(--w) / 1.5);
   --flap: calc(var(--h) * .58);
   --pocket: calc(var(--h) * .52);
   position: relative;
   width: var(--w);
   height: var(--h);
-  margin-top: var(--flap); /* sitio arriba para la solapa abierta */
 }
-/* Móvil (vertical): el mismo sobre que en escritorio, dimensionado por la altura de la pantalla.
-   Queda más ancho que la pantalla y centrado, así que las esquinas laterales se salen por los lados */
+/* Móvil (vertical): el mismo sobre, dimensionado por la altura de la pantalla y centrado.
+   Queda más ancho que la pantalla, así que las esquinas laterales se salen por los lados */
 @media (orientation: portrait) {
   .envelope {
-    --w: 94vh;
-    --w: 94svh;
+    --w: 69vh;
+    --w: 69svh;
     position: absolute;
     left: 50%;
-    margin: 0 0 0 calc(var(--w) / -2);
-    top: calc(100% - var(--h) + 2px); /* pegado al borde inferior (2 px por debajo): la tarjeta, más alta que el sobre, no asoma por abajo */
+    top: 50%;
+    margin: calc(var(--h) / -2) 0 0 calc(var(--w) / -2);
   }
 }
 
@@ -631,24 +681,24 @@ html:not([lang="de"]) .rsvp__title-text { position: absolute; width: 1px; height
 
 /* Papel: cada pieza ocupa el sobre entero y se recorta con clip-path, así las manchas coinciden entre piezas */
 .paper-tex {
-  background-image: var(--grain), var(--mottle), var(--tint);
-  background-size: 180px 180px, 100% 100%, 100% 100%;
-  background-repeat: repeat, no-repeat, no-repeat;
-  background-blend-mode: soft-light, soft-light, normal;
+  background-image: var(--grain-fine), var(--sheen), var(--mottle), var(--tint);
+  background-size: 140px 140px, 100% 100%, 100% 100%, 100% 100%;
+  background-repeat: repeat, no-repeat, no-repeat, no-repeat;
+  background-blend-mode: soft-light, normal, soft-light, normal;
 }
 
 /* Capas, de atrás adelante: fondo (1) · solapa abierta (2) · tarjeta (3) · bolsillo (4) · sombra (5) · solapa cerrada (6) */
 .envelope__back {
   z-index: 1;
-  --tint: linear-gradient(#012a31, #013a43);
-  border-radius: 10px;
+  --tint: linear-gradient(#012f37, #013a43); /* arriba, el mismo tono que la cara interior de la solapa */
+  border-radius: 0 0 10px 10px; /* arriba recto: ahí nace la solapa */
   box-shadow: 0 30px 60px -20px rgb(1 47 54 / .6), 0 8px 20px -8px rgb(1 47 54 / .4);
 }
 
 .envelope__front {
   z-index: 4;
   --tint: linear-gradient(var(--teal), #013f48);
-  border-radius: 10px;
+  border-radius: 0 0 10px 10px;
   clip-path: polygon(0 0, 50% var(--pocket), 100% 0, 100% 100%, 0 100%);
 }
 
@@ -673,12 +723,12 @@ html:not([lang="de"]) .rsvp__title-text { position: absolute; width: 1px; height
 
 .envelope__flap-out, .envelope__flap-in { -webkit-backface-visibility: hidden; backface-visibility: hidden; }
 .envelope__flap-out {
-  --tint: linear-gradient(to bottom, #02525d, #025d69);
+  --tint: linear-gradient(to bottom, var(--teal), #014b56); /* mismo papel que el cuerpo: es una sola pieza doblada */
   clip-path: polygon(0 0, 100% 0, 50% var(--flap));
 }
 /* Cara interior: se ve cuando la solapa ya está abierta */
 .envelope__flap-in {
-  --tint: linear-gradient(to top, #013640, #014550);
+  --tint: linear-gradient(#012f37, #012f37); /* liso y del mismo tono que el interior del sobre (va como degradado: es una capa de imagen) */
   clip-path: polygon(0 var(--flap), 100% var(--flap), 50% 0);
   transform-origin: 50% calc(var(--flap) / 2);
   transform: rotateX(180deg);
@@ -708,7 +758,20 @@ html:not([lang="de"]) .rsvp__title-text { position: absolute; width: 1px; height
   background-image: var(--grain), radial-gradient(circle at 30% 26%, #b8882f, #8c6420 32%, #6a4a14 68%, #4a330b);
   background-size: 90px, auto;
   background-blend-mode: overlay, normal;
-  box-shadow: 0 8px 18px rgb(0 0 0 / .45), inset 0 -7px 12px rgb(0 0 0 / .4), inset 0 6px 10px rgb(255 215 140 / .3);
+  box-shadow:
+    0 14px 24px rgb(0 0 0 / .45), 0 3px 5px rgb(0 0 0 / .4),          /* sombra sobre el papel */
+    inset 5px 6px 9px rgb(255 222 150 / .45),                          /* borde iluminado */
+    inset -7px -8px 13px rgb(0 0 0 / .5);                              /* borde en sombra */
+}
+/* Brillo de la cera */
+.envelope__seal::after {
+  content: '';
+  position: absolute;
+  inset: 5%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse 45% 35% at 32% 24%, rgb(255 240 205 / .55), transparent 70%);
+  mix-blend-mode: screen;
+  pointer-events: none;
 }
 .envelope__seal-face {
   position: absolute;
@@ -717,10 +780,14 @@ html:not([lang="de"]) .rsvp__title-text { position: absolute; width: 1px; height
   place-items: center;
   border-radius: 50%;
   background: radial-gradient(circle at 40% 35%, #7a5719, #5a400f 80%);
-  box-shadow: inset 0 4px 7px rgb(0 0 0 / .5), inset 0 -2px 4px rgb(255 215 140 / .25), 0 1px 0 rgb(255 215 140 / .25);
+  box-shadow:
+    inset 4px 5px 9px rgb(0 0 0 / .6),           /* hundido: sombra dentro, arriba-izquierda */
+    inset -3px -4px 6px rgb(255 215 140 / .35),  /* y luz dentro, abajo-derecha */
+    0 0 0 2px rgb(60 40 8 / .35),
+    -1px -1px 0 2px rgb(255 220 150 / .15);
 }
 /* Monograma en oro claro sobre cera oscura (contraste ≥ 4.7:1 en todo el sello) con sombra de relieve */
-.envelope__seal .logo { width: 78%; color: #f2d993; filter: drop-shadow(0 1px 1px rgb(0 0 0 / .6)); }
+.envelope__seal .logo { width: 78%; color: #f2d993; filter: drop-shadow(0 -1px 0 rgb(255 238 175 / .5)) drop-shadow(0 1.5px 1px rgb(0 0 0 / .7)); } /* monograma en relieve */
 
 /* Invitación: del tamaño exacto de la pantalla, con una copia de la parte de arriba de la web.
    main.js la encoge y la coloca dentro del sobre; luego la saca y la devuelve a su tamaño real */
@@ -738,9 +805,22 @@ html:not([lang="de"]) .rsvp__title-text { position: absolute; width: 1px; height
   box-shadow: 0 0 0 1px rgb(0 0 0 / .05), 0 10px 40px rgb(0 0 0 / .3);
 }
 .intro__card.is-ready { visibility: visible; }
+.intro__card-paper {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: var(--watercolor) 0 0 / 320px, var(--grain) 0 0 / 180px;
+  mix-blend-mode: multiply;
+  opacity: .5;
+}
 
 /* Mientras la tarjeta crece, el sobre se disuelve pieza a pieza (no el sobre entero, para no alterar las capas) */
-.is-dissolving .envelope > * { opacity: 0 !important; transition: opacity .8s ease !important; }
+.is-dissolving .envelope > * {
+  opacity: 0 !important;
+  transform: translateY(45vh) !important;
+  transition: opacity 1s ease, transform 1.5s cubic-bezier(.5, 0, .75, .3) !important;
+}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

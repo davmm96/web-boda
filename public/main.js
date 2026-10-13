@@ -127,10 +127,10 @@
     history.scrollRestoration = 'manual';
     window.scrollTo(0, 0);
 
-    // Copia de lo que se ve al abrir la web (portada, cuadros y cuenta atrás), ya traducida y sin el menú.
+    // Copia de lo que se ve al abrir la web (portada y cuenta atrás), ya traducida y sin el menú.
     // Deja arriba el hueco del menú para que, al final, todo quede en el mismo sitio que en la web real.
     // Sin ids ni data-*, para que el resto del código no la confunda con la web real
-    [...document.querySelector('main').children].slice(0, 3).forEach((el) => card.append(el.cloneNode(true)));
+    document.querySelectorAll('main > .hero, main > .countdown').forEach((el) => card.append(el.cloneNode(true)));
     card.querySelectorAll('*').forEach((el) => {
       el.removeAttribute('id');
       [...el.attributes].forEach((a) => { if (a.name.startsWith('data-')) el.removeAttribute(a.name); });
@@ -150,22 +150,40 @@
     const at = (lift) => `translate(${x}px, ${y - lift}px) scale(${scale})`;
     const radius = `${8 / scale}px`; // esquinas de ~8 px a la vista, aunque esté escalada
     const shadow = getComputedStyle(card).boxShadow;
+    // Mientras está dentro, la tarjeta (más alta que el sobre en móvil) se recorta por el borde inferior del sobre
+    // para que no asome por debajo. El recorte va en coordenadas de la tarjeta (sin escalar)
+    // (por arriba y los lados se deja margen negativo para no cortar la sombra de la tarjeta)
+    const shadowRoom = 80 / scale;
+    const clipBottom = (lift) => `inset(-${shadowRoom}px -${shadowRoom}px ${Math.max(0, vh - (env.bottom - (y - lift)) / scale)}px -${shadowRoom}px)`;
+
+    // Papel de acuarela por encima del contenido; se desvanece mientras la tarjeta crece y pasa a ser la web
+    const paper = document.createElement('div');
+    paper.className = 'intro__card-paper';
+    card.append(paper);
 
     card.style.transform = at(0);
     card.style.borderRadius = radius;
+    card.style.clipPath = clipBottom(0);
     card.classList.add('is-ready');
 
     await wait(INTRO_MS.closed);
     intro.classList.add('is-open');
     await wait(INTRO_MS.toCard);
 
-    // Un solo movimiento: sube acelerando y, sin frenar, sigue subiendo mientras crece y se posa a pantalla completa
+    // Un solo movimiento: sube acelerando y, sin frenar, sigue subiendo mientras crece y se posa a pantalla completa.
+    // Cuando empieza a crecer, el sobre baja y se desvanece, y el recorte inferior de la tarjeta se va soltando
     setTimeout(() => intro.classList.add('is-dissolving'), INTRO_MS.card * RISE_SHARE);
+    if (!document.body.classList.contains('paper')) paper.animate([{ opacity: .5 }, { opacity: 0 }], {
+      delay: INTRO_MS.card * RISE_SHARE,
+      duration: INTRO_MS.card * (1 - RISE_SHARE),
+      easing: 'ease-in',
+      fill: 'forwards',
+    });
     await card.animate(
       [
-        { offset: 0, transform: at(0), borderRadius: radius, boxShadow: shadow, easing: 'cubic-bezier(.45, 0, .75, .75)' },
-        { offset: RISE_SHARE, transform: at(rise), borderRadius: radius, boxShadow: shadow, easing: 'cubic-bezier(.35, .2, .2, 1)' },
-        { offset: 1, transform: 'translate(0px, 0px) scale(1)', borderRadius: '0px', boxShadow: '0 0 0 0 transparent' },
+        { offset: 0, transform: at(0), borderRadius: radius, boxShadow: shadow, clipPath: clipBottom(0), easing: 'cubic-bezier(.45, 0, .75, .75)' },
+        { offset: RISE_SHARE, transform: at(rise), borderRadius: radius, boxShadow: shadow, clipPath: clipBottom(rise), easing: 'cubic-bezier(.35, .2, .2, 1)' },
+        { offset: 1, transform: 'translate(0px, 0px) scale(1)', borderRadius: '0px', boxShadow: '0 0 0 0 transparent', clipPath: `inset(-${shadowRoom}px -${shadowRoom}px 0px -${shadowRoom}px)` },
       ],
       { duration: INTRO_MS.card, fill: 'forwards' },
     ).finished;

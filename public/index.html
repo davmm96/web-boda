@@ -30,7 +30,7 @@
     if (SHOW_INTRO) document.documentElement.classList.add('show-intro');
   </script>
 </head>
-<body>
+<body class="paper"><!-- "paper" = textura de papel de acuarela en toda la web (en prueba) -->
 
   <!-- Sobre de bienvenida (al abrir la web) -->
   <div class="intro" data-intro aria-hidden="true">
@@ -82,8 +82,6 @@
         <img src="img/finca-acuarela.webp" alt="" width="2000" height="1414" data-i18n-alt="hero.alt">
       </figure>
     </section>
-
-    <div class="checks" aria-hidden="true"></div>
 
     <!-- Cuenta atrás -->
     <section class="countdown">
@@ -159,7 +157,8 @@
       </div>
     </section>
 
-    <div class="checks" aria-hidden="true"></div>
+    <!-- Separador: línea fina con el corazón de acuarela -->
+    <div class="sep" aria-hidden="true"><span class="sep__line sep__line--l"></span><span class="sep__heart"></span><span class="sep__line sep__line--r"></span></div>
 
     <!-- Lugar -->
     <section class="section venue reveal" id="lugar">
@@ -221,7 +220,8 @@
       </div>
     </section>
 
-    <div class="checks" aria-hidden="true"></div>
+    <!-- Separador: línea fina con el corazón de acuarela -->
+    <div class="sep" aria-hidden="true"><span class="sep__line sep__line--l"></span><span class="sep__heart"></span><span class="sep__line sep__line--r"></span></div>
 
     <!-- Confirmación de asistencia -->
     <section class="section rsvp reveal" id="confirmar">
