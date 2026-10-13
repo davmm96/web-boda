@@ -615,6 +615,13 @@ html[lang="de"] .title-img--rsvp { --img: url(img/titulo-confirma-de.png); --ar:
   .rsvp__box .rsvp__deadline, .rsvp__box .rsvp__contact { margin-bottom: .8rem; }
   .rsvp__box .btn { font-size: 1rem; padding: .82em 1.3em .66em; }
 }
+/* Móvil: carta más ancha (84 % de la pantalla). Las flores se meten más bajo la carta (sobresalen el 25 %),
+   así la carta tapa parte de ellas y lo que queda a la vista no se corta por el borde de la pantalla */
+@media (max-width: 700px) {
+  .rsvp__wrap { width: 84vw; }
+  .rsvp__flowers--sun { transform: translate(25%, -60%); }
+  .rsvp__flowers--bougainvillea { transform: translate(-25%, 40%); }
+}
 
 /* ---------- Pie ---------- */
 /* Con la textura de papel activada, las franjas azules también la llevan. Usan la versión "oscura", con las zonas
@@ -635,6 +642,18 @@ html[lang="de"] .title-img--rsvp { --img: url(img/titulo-confirma-de.png); --ar:
 .footer__logo { width: 110px; margin: 0 auto 1rem; color: var(--paper); }
 .footer__names { font: 500 2.2rem var(--serif) !important; color: var(--paper); letter-spacing: 0 !important; margin-bottom: .3rem !important; }
 .footer__love { font: 400 .9rem var(--hand) !important; text-transform: uppercase; letter-spacing: .16em !important; color: var(--mustard); margin-top: .8rem !important; }
+/* Móvil: cabecera y pie más compactos (logo más pequeño, letra más pequeña y menos márgenes) */
+@media (max-width: 700px) {
+  .nav { gap: .6rem; padding: .45rem .9rem; }
+  .nav__brand .logo { width: 44px; }
+  .nav__links a { font-size: .95rem; }
+  .lang button { font-size: .78rem; padding: .46em .6em .3em; }
+
+  .footer { padding: 2rem 1rem; }
+  .footer__logo { width: 76px; margin-bottom: .7rem; }
+  .footer p { font-size: .78rem; }
+  .footer__love { font-size: .7rem !important; letter-spacing: .12em !important; margin-top: .6rem !important; }
+}
 
 /* ---------- Animación al hacer scroll (solo con JS activo) ---------- */
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
