@@ -178,6 +178,17 @@ a { color: var(--teal); }
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgb(1 69 79 / .1);
 }
+/* Textura de papel en la cabecera, con la misma intensidad que la del fondo */
+.paper .nav::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--watercolor) 0 0 / 320px, var(--grain) 0 0 / 180px;
+  mix-blend-mode: multiply;
+  opacity: .5;
+}
 .nav__brand { display: flex; color: var(--teal); margin-right: auto; }
 .nav__brand .logo { width: 60px; }
 .nav__links { display: flex; align-items: center; gap: 1.4rem; }
@@ -257,20 +268,21 @@ html[lang="en"] .title-img--program { --img: url(img/programa-en.png); --ar: 141
 /* "Dress code": igual en los 3 idiomas */
 /* "Bienvenidos / Willkommen / Welcome": mismo alto en los 3 idiomas; alineado a la izquierda como el texto de su columna */
 .title-img--welcome { --img: url(img/bienvenidos-es.png); --ar: 1829 / 430; margin: 0 0 .4rem; }
-html[lang="de"] .title-img--welcome { --img: url(img/bienvenidos-de.png); --ar: 1808 / 430; }
+html[lang="de"] .title-img--welcome { --img: url(img/bienvenidos-de.png); --ar: 1470 / 344; } /* "Willkommen" corregido */
 html[lang="en"] .title-img--welcome { --img: url(img/bienvenidos-en.png); --ar: 1449 / 430; }
 .title-img--dresscode { --img: url(img/titulo-dresscode.png); --ar: 1516 / 375; }
 /* "Regalos / Geschenke / Gifts": recortadas al mismo alto para que la letra mida igual en los 3 idiomas */
 .title-img--gift { --img: url(img/regalos-es.png); --ar: 1416 / 525; }
 html[lang="de"] .title-img--gift { --img: url(img/regalos-de.png); --ar: 1542 / 525; }
 html[lang="en"] .title-img--gift { --img: url(img/regalos-en.png); --ar: 917 / 525; }
-/* "Confirma tu asistencia": imagen en castellano e inglés; en alemán, de momento, el título en texto */
+/* "Confirma tu asistencia": imagen en los tres idiomas */
 .title-img--rsvp { --img: url(img/titulo-confirma.png); --ar: 1361 / 560; height: clamp(5rem, 11vw, 7.6rem); }
 /* Inglés: su imagen es un 3 % más alta (578 frente a 560 px), así que va un 3 % más grande para que la letra mida igual */
 html[lang="en"] .title-img--rsvp { --img: url(img/titulo-confirma-en.png); --ar: 1699 / 578; height: calc(clamp(5rem, 11vw, 7.6rem) * 1.032); }
-/* Alemán: aún sin imagen, se ve el título en texto */
-html[lang="de"] .title-img--rsvp { display: none; }
-html:not([lang="de"]) .rsvp__title-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+/* Alemán: "Wir bitten um Rückmeldung" (mide prácticamente lo mismo que la de castellano: mismo alto) */
+html[lang="de"] .title-img--rsvp { --img: url(img/titulo-confirma-de.png); --ar: 1276 / 446; }
+/* El título en texto queda oculto en los tres idiomas (solo para Google y lectores de pantalla) */
+.rsvp__title-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .title-img--venue { --img: url(img/titulo-finca.png); --ar: 1588 / 741; height: clamp(5.6rem, 12vw, 8.5rem); margin: 0 0 .4rem; }
 /* Fecha y lugar siempre en dos líneas, sin separador. Cada línea va en una sola fila: el tamaño se calcula
    para que quepa la más larga ("SÁBADO, 8 DE MAYO DE 2027 · 12:30", unos 20 em) en el ancho de la pantalla */
@@ -805,7 +817,6 @@ html:not([lang="de"]) .rsvp__title-text { position: absolute; width: 1px; height
 /* Invitación: del tamaño exacto de la pantalla, con una copia de la parte de arriba de la web.
    main.js la encoge y la coloca dentro del sobre; luego la saca y la devuelve a su tamaño real */
 .intro__card {
-  will-change: transform;
   position: absolute;
   top: 0;
   left: 0;

@@ -90,7 +90,7 @@ window.TRANSLATIONS = {
     'gift.copy': 'IBAN kopieren',
     'gift.copied': 'Kopiert!',
 
-    'rsvp.title': 'Bestätige deine Teilnahme',
+    'rsvp.title': 'Wir bitten um Rückmeldung',
     'rsvp.note': 'Bitte gib uns bis zum 1. April 2027 Bescheid.',
     'rsvp.contact': 'Wenn ihr Fragen habt, meldet euch gerne bei uns.',
     'rsvp.closing': 'Wir freuen uns auf dich!',

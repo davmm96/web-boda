@@ -74,8 +74,12 @@
   const units = {};
   document.querySelectorAll('[data-unit]').forEach((el) => { units[el.dataset.unit] = el; });
 
+  // Se lee el reloj una sola vez por actualización y se programa la siguiente 30 ms DESPUÉS de cada cambio de segundo.
+  // (Antes se leía dos veces y apuntaba justo al cambio: si las dos lecturas caían a cada lado del cambio,
+  // el segundo se quedaba igual y al siguiente bajaba 2 de golpe)
   function tick() {
-    const diff = WEDDING - Date.now();
+    const now = Date.now();
+    const diff = WEDDING - now;
     if (diff <= 0) {
       document.querySelector('[data-countdown]').hidden = true;
       document.querySelector('[data-countdown-done]').hidden = false;
@@ -86,7 +90,7 @@
     units.hours.textContent = String(Math.floor(s / 3600) % 24).padStart(2, '0');
     units.minutes.textContent = String(Math.floor(s / 60) % 60).padStart(2, '0');
     units.seconds.textContent = String(s % 60).padStart(2, '0');
-    setTimeout(tick, 1000 - (Date.now() % 1000));
+    setTimeout(tick, 1000 - (now % 1000) + 30);
   }
 
   // ---------- Copiar IBAN ----------
@@ -193,6 +197,7 @@
     // del navegador): primero se quita la intro y, un fotograma después, se devuelve el scroll y aparece el menú
     const frame = () => new Promise((resolve) => requestAnimationFrame(resolve));
     nav.style.opacity = '0';
+    await intro.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 200, easing: 'linear' }).finished; // tapa cualquier diferencia de dibujado
     intro.style.display = 'none';
     await frame();
     root.classList.remove('show-intro');
