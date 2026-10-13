@@ -188,9 +188,15 @@
       { duration: INTRO_MS.card, fill: 'forwards' },
     ).finished;
 
-    // La tarjeta ya cubre la pantalla y es idéntica a la web: se cambia una por otra y aparece el menú
+    // La tarjeta ya cubre la pantalla y es idéntica a la web (que ya está pintada debajo): se cambia una por otra
+    // en dos pasos para no hacerlo todo en el mismo instante (en Android, devolver el scroll puede mover la barra
+    // del navegador): primero se quita la intro y, un fotograma después, se devuelve el scroll y aparece el menú
+    const frame = () => new Promise((resolve) => requestAnimationFrame(resolve));
     nav.style.opacity = '0';
+    intro.style.display = 'none';
+    await frame();
     root.classList.remove('show-intro');
+    intro.style.display = '';
     await nav.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 400, easing: 'ease-out' }).finished;
     nav.style.opacity = '';
   }

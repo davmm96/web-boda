@@ -644,8 +644,10 @@ html:not([lang="de"]) .rsvp__title-text { position: absolute; width: 1px; height
   background-blend-mode: soft-light, normal;
 }
 
-/* La web real queda oculta debajo; al final la tarjeta (copia idéntica) la tapa entera y se cambia una por otra */
-.show-intro body > .nav, .show-intro body > main, .show-intro body > .footer { opacity: 0; }
+/* La web real se queda visible DEBAJO de la intro (que tiene fondo opaco y la tapa entera): así el navegador ya la
+   tiene pintada cuando la tarjeta se cambia por ella y no parpadea (sobre todo en Android). Solo el menú va oculto,
+   porque al final aparece con un fundido */
+.show-intro body > .nav { opacity: 0; }
 
 /* Medidas del sobre: --h alto · --flap alto de la solapa · --pocket punta del bolsillo (se ve al abrir).
    Va centrado en la pantalla; su alto es como mucho el 46 % de la pantalla para que, al abrirse,
@@ -792,6 +794,7 @@ html:not([lang="de"]) .rsvp__title-text { position: absolute; width: 1px; height
 /* Invitación: del tamaño exacto de la pantalla, con una copia de la parte de arriba de la web.
    main.js la encoge y la coloca dentro del sobre; luego la saca y la devuelve a su tamaño real */
 .intro__card {
+  will-change: transform;
   position: absolute;
   top: 0;
   left: 0;
