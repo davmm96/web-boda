@@ -91,8 +91,8 @@ window.TRANSLATIONS = {
     'gift.copied': 'Kopiert!',
 
     'rsvp.title': 'Wir bitten um Rückmeldung',
-    'rsvp.note': 'Bitte gib uns bis zum 1. April 2027 Bescheid.',
-    'rsvp.contact': 'Wenn ihr Fragen habt, meldet euch gerne bei uns.',
+    'rsvp.note': 'Bitte gebt uns bis zum 1. April 2027 Bescheid, ob ihr dabei seid.',
+    'rsvp.contact': 'Wenn ihr Fragen habt, meldet euch gerne jederzeit bei uns!',
     'rsvp.closing': 'Wir freuen uns auf dich!',
     'rsvp.button': 'Anmeldeformular',
 
@@ -140,8 +140,8 @@ window.TRANSLATIONS = {
     'gift.copied': 'Copied!',
 
     'rsvp.title': 'Confirm your attendance',
-    'rsvp.note': 'Please let us know by April 1, 2027.',
-    'rsvp.contact': 'If you have any questions, don’t hesitate to get in touch.',
+    'rsvp.note': 'Please RSVP by April 1, 2027.',
+    'rsvp.contact': 'If you have any questions, feel free to reach out to us!',
     'rsvp.closing': 'We can’t wait to see you!',
     'rsvp.button': 'RSVP form',
 

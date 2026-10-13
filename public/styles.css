@@ -840,11 +840,14 @@ html[lang="de"] .title-img--rsvp { --img: url(img/titulo-confirma-de.png); --ar:
   opacity: .5;
 }
 
-/* Mientras la tarjeta crece, el sobre se disuelve pieza a pieza (no el sobre entero, para no alterar las capas) */
+/* Mientras la tarjeta crece, el sobre se desvanece pieza a pieza (no el sobre entero, para no alterar las capas) */
+/* (Sin desplazamiento: mover las piezas obligaba al navegador a rehacer la capa de la solapa 3D justo en ese
+   momento y producía un parpadeo.) Las capas de las piezas se preparan desde el principio con will-change,
+   así al empezar el fundido el navegador no tiene que crear nada nuevo */
+.show-intro .envelope > * { will-change: opacity; }
 .is-dissolving .envelope > * {
   opacity: 0 !important;
-  transform: translateY(45vh) !important;
-  transition: opacity 1s ease, transform 1.5s cubic-bezier(.5, 0, .75, .3) !important;
+  transition: opacity 1s ease !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

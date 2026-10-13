@@ -175,7 +175,7 @@
     await wait(INTRO_MS.toCard);
 
     // Un solo movimiento: sube acelerando y, sin frenar, sigue subiendo mientras crece y se posa a pantalla completa.
-    // Cuando empieza a crecer, el sobre baja y se desvanece, y el recorte inferior de la tarjeta se va soltando
+    // Cuando empieza a crecer, el sobre se desvanece y el recorte inferior de la tarjeta se va soltando
     setTimeout(() => intro.classList.add('is-dissolving'), INTRO_MS.card * RISE_SHARE);
     if (!document.body.classList.contains('paper')) paper.animate([{ opacity: .5 }, { opacity: 0 }], {
       delay: INTRO_MS.card * RISE_SHARE,
