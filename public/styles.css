@@ -62,13 +62,15 @@ body {
 
 img { max-width: 100%; height: auto; display: block; }
 
-/* Textura de papel de acuarela en toda la web (en prueba). Para quitarla: borrar class="paper" del <body> */
+/* Textura de papel de acuarela en el FONDO de la web (en prueba). Va por debajo del contenido: las tarjetas, cartas,
+   polaroid, mapa y casillas del programa la tapan con su propio fondo; se ve en el fondo, bajo el texto y en la acuarela
+   de la portada (que se funde con el fondo). Para quitarla: borrar class="paper" del <body> */
 .paper { position: relative; }
 .paper::before {
   content: '';
   position: absolute;
   inset: 0;
-  z-index: 60; /* por encima del contenido (y del menú fijo); la intro va por encima (z-index 100) */
+  z-index: -1; /* por debajo de todo el contenido, encima del color de fondo */
   pointer-events: none;
   background: var(--watercolor) 0 0 / 320px, var(--grain) 0 0 / 180px;
   mix-blend-mode: multiply;
@@ -603,6 +605,14 @@ html:not([lang="de"]) .rsvp__title-text { position: absolute; width: 1px; height
 }
 
 /* ---------- Pie ---------- */
+/* Con la textura de papel activada, las franjas azules también la llevan. Usan la versión "oscura", con las zonas
+   planas en gris medio: en soft-light el gris medio no cambia el color, así el azul queda igual que sin textura
+   y solo se ve el relieve */
+.paper .countdown, .paper .footer {
+  background-image: var(--watercolor-dark), var(--grain);
+  background-size: 320px, 180px;
+  background-blend-mode: soft-light, soft-light;
+}
 .footer {
   background: var(--teal);
   color: var(--teal-soft);
@@ -628,6 +638,7 @@ html:not([lang="de"]) .rsvp__title-text { position: absolute; width: 1px; height
   --grain-fine: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='f' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='1.7' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23f)' opacity='.3'/></svg>");
   --sheen: linear-gradient(115deg, transparent 22%, rgb(255 255 255 / .025) 38%, rgb(255 255 255 / .065) 48%, rgb(255 255 255 / .025) 58%, transparent 74%);
   /* Papel de acuarela (grano grueso): ruido iluminado de lado para que parezca relieve */
+  --watercolor-dark: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='w' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='.045' numOctaves='4' seed='3' stitchTiles='stitch' result='t'/><feDiffuseLighting in='t' lighting-color='%23969696' surfaceScale='1.6'><feDistantLight azimuth='135' elevation='58'/></feDiffuseLighting></filter><rect width='100%' height='100%' filter='url(%23w)'/></svg>");
   --watercolor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='w' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='.045' numOctaves='4' seed='3' stitchTiles='stitch' result='t'/><feDiffuseLighting in='t' lighting-color='white' surfaceScale='1.6'><feDistantLight azimuth='135' elevation='58'/></feDiffuseLighting></filter><rect width='100%' height='100%' filter='url(%23w)'/></svg>");
 }
 
@@ -811,7 +822,7 @@ html:not([lang="de"]) .rsvp__title-text { position: absolute; width: 1px; height
 .intro__card-paper {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: -1; /* igual que en la web: por debajo del contenido de la invitación */
   pointer-events: none;
   background: var(--watercolor) 0 0 / 320px, var(--grain) 0 0 / 180px;
   mix-blend-mode: multiply;
