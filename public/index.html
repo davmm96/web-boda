@@ -26,11 +26,23 @@
     // Sobre de bienvenida: se muestra siempre al abrir la web.
     // Para desactivarlo (p. ej. mientras se hacen pruebas), poner `false`
     const SHOW_INTRO = true;
+    // Web bloqueada con contraseña hasta dar las invitaciones. Para abrirla a todos, poner `false`
+    const LOCKED = true;
+    const PASSWORD = 'meular2027'; // ← contraseña para entrar mientras está bloqueada
+    if (LOCKED && localStorage.getItem('unlocked') !== PASSWORD) document.documentElement.classList.add('locked');
     document.documentElement.classList.add('js');
     if (SHOW_INTRO) document.documentElement.classList.add('show-intro');
   </script>
 </head>
 <body class="paper"><!-- "paper" = textura de papel de acuarela en toda la web (en prueba) -->
+
+  <!-- Bloqueo con contraseña (solo se ve si LOCKED = true en el <head>) -->
+  <form class="gate" data-gate>
+    <span class="logo gate__logo" aria-hidden="true"></span>
+    <p class="gate__msg">Todavía no está disponible, cotilla</p>
+    <input class="gate__input" type="password" placeholder="Contraseña" aria-label="Contraseña" autocomplete="current-password">
+    <button class="btn btn--small" type="submit">Entrar</button>
+  </form>
 
   <!-- Sobre de bienvenida (al abrir la web) -->
   <div class="intro" data-intro aria-hidden="true">
@@ -257,6 +269,22 @@
     <p class="footer__love" data-i18n="footer.love">Hecho con cariño y muchas horas de acuarelas</p>
   </footer>
 
+  <script>
+    // Contraseña correcta → se recuerda en este navegador y se recarga (así el sobre se ve desde el principio)
+    document.querySelector('[data-gate]').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const input = e.target.querySelector('input');
+      if (input.value.trim() === PASSWORD) {
+        localStorage.setItem('unlocked', PASSWORD);
+        location.reload();
+      } else {
+        input.value = '';
+        input.classList.remove('is-wrong');
+        void input.offsetWidth;
+        input.classList.add('is-wrong');
+      }
+    });
+  </script>
   <script src="i18n.js"></script>
   <script src="main.js"></script>
 </body>
