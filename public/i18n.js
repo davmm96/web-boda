@@ -42,7 +42,7 @@ window.TRANSLATIONS = {
     'gift.copied': '¡Copiado!',
 
     'rsvp.title': 'Confirma tu asistencia',
-    'rsvp.note': 'Confírmanos tu asistencia antes del 1 de abril de 2027.',
+    'rsvp.note': 'Confírmanos tu asistencia antes del 1 de marzo de 2027.',
     'rsvp.contact': 'Si tenéis cualquier duda, no dudéis en contactarnos.',
     'rsvp.closing': '¡Te esperamos!',
     'rsvp.button': 'Formulario de asistencia',
@@ -58,7 +58,7 @@ window.TRANSLATIONS = {
     'hero.title': 'Anna und David',
     'hero.alt': 'Aquarell der Finca Meu Lar',
 
-    'countdown.title': 'Countdown bis zur großen Partie',
+    'countdown.title': 'Der Countdown für den großen Tag läuft.',
     'countdown.days': 'Tage',
     'countdown.hours': 'Std.',
     'countdown.minutes': 'Min.',
@@ -67,20 +67,20 @@ window.TRANSLATIONS = {
 
     'calendar.label': 'Im Kalender speichern',
     'calendar.event': 'Hochzeit von Anna & David',
-    'calendar.details': 'Ankunft 12:30 · Trauung 13:00 · Sektempfang 14:00 · Hochzeitsessen 15:30 · Party 18:00',
+    'calendar.details': 'Empfang 12:30 · Trauung 13:00 · Sektempfang 14:00 · Hochzeitsessen 15:30 · Hochzeitsparty 18:00',
 
     'welcome.title': 'Willkommen',
-    'welcome.text': 'Willkommen auf der Website unserer Hochzeit. Wir freuen uns riesig, diesen so wichtigen Moment in unserem Leben mit euch teilen zu können. Hier findet ihr alle Informationen, die ihr für den großen Tag braucht. Wir hoffen, euch alle dort zu sehen, und dass ihr euch bei uns wie zu Hause fühlt.',
+    'welcome.text': 'Willkommen auf unserer Hochzeitswebsite. Wir freuen uns sehr, diesen so wichtigen Moment in unserem Leben mit euch zu teilen. Hier findet ihr alle wichtigen Informationen für den großen Tag. Wir hoffen, euch alle dort zu sehen und dass ihr euch wie zu Hause fühlt.',
     'welcome.signature': 'Anna und David',
 
-    'program.title': 'Programm',
-    'program.arrival': 'Ankunft',
+    'program.title': 'Tagesablauf',
+    'program.arrival': 'Empfang',
     'program.ceremony': 'Trauung',
     'program.cocktail': 'Sektempfang',
     'program.banquet': 'Hochzeitsessen',
-    'program.party': 'Party',
+    'program.party': 'Hochzeitsparty',
 
-    'venue.text': 'Trauung und Feier am selben Ort.\nWir haben uns in die Finca verliebt, sobald wir sie gesehen haben, und können es kaum erwarten, euch alle dort zu sehen.',
+    'venue.text': 'Trauung und Feier finden am selben Ort statt.\nWir haben uns auf den ersten Blick in die Finca verliebt und können es kaum erwarten, euch alle dort zu sehen.',
     'venue.directions': 'Route planen',
 
     'dresscode.text': 'Schick, bequem und mit Lust, bis zum Schluss zu feiern. Mädels, wir bitten euch nur um zwei Dinge: Kleider, bei denen man die Schuhe sieht, damit ihr beim Tanzen alles geben könnt – und Weiß und ähnliche Farben bitte nur der Braut überlassen.',
@@ -91,7 +91,7 @@ window.TRANSLATIONS = {
     'gift.copied': 'Kopiert!',
 
     'rsvp.title': 'Wir bitten um Rückmeldung',
-    'rsvp.note': 'Bitte gebt uns bis zum 1. April 2027 Bescheid, ob ihr dabei seid.',
+    'rsvp.note': 'Bitte gebt uns bis zum 1. März 2027 Bescheid, ob ihr dabei seid.',
     'rsvp.contact': 'Wenn ihr Fragen habt, meldet euch gerne jederzeit bei uns!',
     'rsvp.closing': 'Wir freuen uns auf dich!',
     'rsvp.button': 'Anmeldeformular',
@@ -107,7 +107,7 @@ window.TRANSLATIONS = {
     'hero.title': 'Anna and David',
     'hero.alt': 'Watercolour of Finca Meu Lar',
 
-    'countdown.title': 'Countdown to the big game',
+    'countdown.title': 'Countdown to the big day',
     'countdown.days': 'days',
     'countdown.hours': 'hrs',
     'countdown.minutes': 'min',
@@ -116,23 +116,23 @@ window.TRANSLATIONS = {
 
     'calendar.label': 'Save the date in your calendar',
     'calendar.event': 'Anna & David’s wedding',
-    'calendar.details': 'Arrival 12:30 · Ceremony 13:00 · Cocktail hour 14:00 · Banquet 15:30 · Party 18:00',
+    'calendar.details': 'Arrival 12:30 · Ceremony 13:00 · Drinks Reception 14:00 · Wedding Banquet 15:30 · Party 18:00',
 
     'welcome.title': 'Welcome',
-    'welcome.text': 'Welcome to our wedding website. We’re so excited to share this very special moment in our lives with you. Here you’ll find everything you need for the big day. We hope to see you all there and to make you feel right at home.',
+    'welcome.text': 'Welcome to our wedding website. We are thrilled to share such an important moment in our lives with you. Here you will find all the information you need for the big day. We hope to see you all there and make you feel right at home.',
     'welcome.signature': 'Anna and David',
 
-    'program.title': 'Program',
+    'program.title': 'Schedule',
     'program.arrival': 'Arrival',
     'program.ceremony': 'Ceremony',
-    'program.cocktail': 'Cocktail hour',
-    'program.banquet': 'Wedding banquet',
+    'program.cocktail': 'Drinks Reception',
+    'program.banquet': 'Wedding Banquet',
     'program.party': 'Party',
 
-    'venue.text': 'Ceremony and celebration in the same place.\nWe fell in love with the finca the moment we saw it, and we can’t wait to see you all there.',
+    'venue.text': 'Ceremony and reception at the same location.\nWe fell in love with the venue as soon as we saw it, and we can’t wait to see you all there.',
     'venue.directions': 'Get directions',
 
-    'dresscode.text': 'Looking good, comfortable and ready to party until the very end. Ladies, we only ask two things: dresses that show your shoes, so you can go all out on the dance floor, and please leave white and similar colours to the bride.',
+    'dresscode.text': 'Look sharp, be comfortable, and get ready to party until the end. Ladies, we just have two requests: opt for dresses that let you show off your shoes for dancing, and please reserve white and similar shades exclusively for the bride.',
 
     'gift.title': 'Gifts',
     'gift.text': 'Having you there is the greatest gift of all.\nStill, if you’d like to give us something to help us start this new chapter, here are our bank details.\nPlease include your full name in the payment reference so we can thank you.',
@@ -140,7 +140,7 @@ window.TRANSLATIONS = {
     'gift.copied': 'Copied!',
 
     'rsvp.title': 'Confirm your attendance',
-    'rsvp.note': 'Please RSVP by April 1, 2027.',
+    'rsvp.note': 'Please RSVP by March 1, 2027.',
     'rsvp.contact': 'If you have any questions, feel free to reach out to us!',
     'rsvp.closing': 'We can’t wait to see you!',
     'rsvp.button': 'RSVP form',

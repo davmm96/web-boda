@@ -244,7 +244,7 @@ a { color: var(--teal); }
   mask: url(img/titulo.png) center / contain no-repeat;
 }
 /* "Anna und David" / "Anna and David" (más anchas que la de "y") */
-html[lang="de"] .hero__title, html[lang="en"] .hero__title { width: min(90vw, 860px); aspect-ratio: 1600 / 286; }
+html[lang="de"] .hero__title, html[lang="en"] .hero__title { width: min(90vw, 860px); aspect-ratio: 2796 / 487; }
 html[lang="de"] .hero__title { -webkit-mask-image: url(img/titulo-de.png); mask-image: url(img/titulo-de.png); }
 html[lang="en"] .hero__title { -webkit-mask-image: url(img/titulo-en.png); mask-image: url(img/titulo-en.png); }
 
@@ -261,8 +261,8 @@ html[lang="en"] .hero__title { -webkit-mask-image: url(img/titulo-en.png); mask-
   mask: var(--img) center / contain no-repeat;
 }
 .title-img--program { --img: url(img/programa-es.png); --ar: 1578 / 419; }
-html[lang="de"] .title-img--program { --img: url(img/programa-de.png); --ar: 1600 / 414; }
-html[lang="en"] .title-img--program { --img: url(img/programa-en.png); --ar: 1413 / 419; }
+html[lang="de"] .title-img--program { --img: url(img/programa-de.png); --ar: 3096 / 688; }
+html[lang="en"] .title-img--program { --img: url(img/programa-en.png); --ar: 2370 / 650; }
 /* "Finca Meu Lar": igual en los 3 idiomas, en dos líneas (más alta para que la letra mida lo mismo que en "Programa")
    y alineada a la izquierda como el resto de la columna */
 /* "Dress code": igual en los 3 idiomas */
