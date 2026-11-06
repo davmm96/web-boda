@@ -21,7 +21,7 @@ window.TRANSLATIONS = {
     'calendar.details': 'Llegada 12:30 · Ceremonia 13:00 · Cóctel 14:00 · Banquete 15:30 · Fiesta 18:00',
 
     'welcome.title': 'Bienvenidos',
-    'welcome.text': 'Bienvenidos a la web de nuestra boda. Nos hace mucha ilusión poder compartir con vosotros este momento tan importante en nuestras vidas. Aquí encontraréis toda la información necesaria para el gran día. Esperamos veros a todos allí y que os hagamos sentir como en casa.',
+    'welcome.text': 'Nos hace mucha ilusión poder compartir con vosotros este momento tan importante en nuestras vidas. Aquí encontraréis toda la información necesaria para el gran día.\n\nEsperamos veros a todos allí y que os hagamos sentir como en casa.',
     'welcome.signature': 'Anna y David',
 
     'program.title': 'Programa',
@@ -34,7 +34,7 @@ window.TRANSLATIONS = {
     'venue.text': 'Ceremonia y celebración en el mismo lugar.\nNos enamoramos de la finca nada más verla y estamos deseando veros a todos allí.',
     'venue.directions': 'Cómo llegar',
 
-    'dresscode.text': 'Guapos, cómodos y con ganas de fiesta hasta el final. Chicas, solo os pedimos dos cosas: vestidos que enseñen los zapatos para darlo todo bailando, y dejad el blanco y colores similares únicamente para la novia.',
+    'dresscode.text': 'Guapos, cómodos y con ganas de fiesta hasta el final. Chicas, solo os pedimos dos cosas: vestidos que enseñen los zapatos para darlo todo bailando, y que dejéis el blanco y colores similares únicamente para la novia.',
 
     'gift.title': 'Regalos',
     'gift.text': 'Vuestra presencia es nuestro mayor regalo.\nAun así, si deseáis hacernos un detalle para comenzar esta nueva etapa, os dejamos nuestro número de cuenta.\nPor favor, indicad vuestro nombre completo en el concepto para poder agradecéroslo.',
@@ -43,7 +43,7 @@ window.TRANSLATIONS = {
 
     'rsvp.title': 'Confirma tu asistencia',
     'rsvp.note': 'Confírmanos tu asistencia antes del 1 de marzo de 2027.',
-    'rsvp.contact': 'Si tenéis cualquier duda, no dudéis en contactarnos.',
+    'rsvp.contact': 'Si tienes cualquier duda, no dudes en contactarnos.',
     'rsvp.closing': '¡Te esperamos!',
     'rsvp.button': 'Formulario de asistencia',
 
@@ -53,7 +53,7 @@ window.TRANSLATIONS = {
   de: {
     'meta.title': 'Anna & David',
 
-    'nav.rsvp': 'Formular',
+    'nav.rsvp': 'Rückmeldung',
 
     'hero.title': 'Anna und David',
     'hero.alt': 'Aquarell der Finca Meu Lar',
@@ -70,7 +70,7 @@ window.TRANSLATIONS = {
     'calendar.details': 'Empfang 12:30 · Trauung 13:00 · Sektempfang 14:00 · Hochzeitsessen 15:30 · Hochzeitsparty 18:00',
 
     'welcome.title': 'Willkommen',
-    'welcome.text': 'Willkommen auf unserer Hochzeitswebsite. Wir freuen uns sehr, diesen so wichtigen Moment in unserem Leben mit euch zu teilen. Hier findet ihr alle wichtigen Informationen für den großen Tag. Wir hoffen, euch alle dort zu sehen und dass ihr euch wie zu Hause fühlt.',
+    'welcome.text': 'Wir freuen uns sehr, diesen so wichtigen Moment in unserem Leben mit euch zu teilen. Hier findet ihr alle wichtigen Informationen für den großen Tag.\n\nWir hoffen, euch alle dort zu sehen und dass ihr euch wie zu Hause fühlt.',
     'welcome.signature': 'Anna und David',
 
     'program.title': 'Tagesablauf',
@@ -86,23 +86,23 @@ window.TRANSLATIONS = {
     'dresscode.text': 'Schick, bequem und mit Lust, bis zum Schluss zu feiern. Mädels, wir bitten euch nur um zwei Dinge: Kleider, bei denen man die Schuhe sieht, damit ihr beim Tanzen alles geben könnt – und Weiß und ähnliche Farben bitte nur der Braut überlassen.',
 
     'gift.title': 'Geschenke',
-    'gift.text': 'Eure Anwesenheit ist unser größtes Geschenk.\nWer uns dennoch eine Kleinigkeit für den Start in diesen neuen Lebensabschnitt schenken möchte, findet hier unsere Bankverbindung.\nBitte gebt im Verwendungszweck euren vollständigen Namen an, damit wir uns bei euch bedanken können.',
+    'gift.text': 'Eure Anwesenheit ist für uns das schönste Geschenk.\nWer uns dennoch eine kleine Freude für unseren gemeinsamen Lebensweg machen möchte, findet hier unsere Bankverbindung.\nDamit wir uns bei euch bedanken können, gebt bei der Überweisung bitte einfach euren Namen an.',
     'gift.copy': 'IBAN kopieren',
     'gift.copied': 'Kopiert!',
 
     'rsvp.title': 'Wir bitten um Rückmeldung',
     'rsvp.note': 'Bitte gebt uns bis zum 1. März 2027 Bescheid, ob ihr dabei seid.',
     'rsvp.contact': 'Wenn ihr Fragen habt, meldet euch gerne jederzeit bei uns!',
-    'rsvp.closing': 'Wir freuen uns auf dich!',
-    'rsvp.button': 'Anmeldeformular',
+    'rsvp.closing': 'Wir freuen uns auf euch!',
+    'rsvp.button': 'Gebt uns Bescheid',
 
-    'footer.love': 'Mit Liebe und vielen Stunden Aquarellmalerei gemacht',
+    'footer.love': 'Mit Liebe und in vielen Stunden mit Wasserfarben gestaltet.',
   },
 
   en: {
     'meta.title': 'Anna & David',
 
-    'nav.rsvp': 'Form',
+    'nav.rsvp': 'RSVP',
 
     'hero.title': 'Anna and David',
     'hero.alt': 'Watercolour of Finca Meu Lar',
@@ -119,7 +119,7 @@ window.TRANSLATIONS = {
     'calendar.details': 'Arrival 12:30 · Ceremony 13:00 · Drinks Reception 14:00 · Wedding Banquet 15:30 · Party 18:00',
 
     'welcome.title': 'Welcome',
-    'welcome.text': 'Welcome to our wedding website. We are thrilled to share such an important moment in our lives with you. Here you will find all the information you need for the big day. We hope to see you all there and make you feel right at home.',
+    'welcome.text': 'We are thrilled to share such an important moment in our lives with you. Here you will find all the information you need for the big day.\n\nWe hope to see you all there and make you feel right at home.',
     'welcome.signature': 'Anna and David',
 
     'program.title': 'Schedule',
