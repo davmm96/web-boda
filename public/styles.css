@@ -362,7 +362,10 @@ html[lang="de"] .title-img--rsvp { --img: url(img/titulo-confirma-de.png); --ar:
 
 /* Bienvenida */
 .welcome { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
-.welcome__text p { white-space: pre-line; font-size: 1.12rem; color: #344446; }
+.welcome__text p { font-size: 1.12rem; color: #344446; }
+/* Frase final de la bienvenida: en su propio renglón, con un hueco menor que el de un párrafo */
+.welcome__text [data-i18n="welcome.text"] { margin-bottom: 0; }
+.welcome__text .welcome__closing { margin-top: .6rem; }
 /* Firma al final del texto de bienvenida, como en una carta */
 .welcome__text .welcome__signature { margin-top: 1.2rem; font-size: 1.3rem; color: var(--teal); text-align: right; }
 .polaroid {

@@ -21,7 +21,8 @@ window.TRANSLATIONS = {
     'calendar.details': 'Llegada 12:30 · Ceremonia 13:00 · Cóctel 14:00 · Banquete 15:30 · Fiesta 18:00',
 
     'welcome.title': 'Bienvenidos',
-    'welcome.text': 'Nos hace mucha ilusión poder compartir con vosotros este momento tan importante en nuestras vidas. Aquí encontraréis toda la información necesaria para el gran día.\n\nEsperamos veros a todos allí y que os hagamos sentir como en casa.',
+    'welcome.text': 'Nos hace mucha ilusión poder compartir con vosotros este momento tan importante en nuestras vidas. Aquí encontraréis toda la información necesaria para el gran día.',
+    'welcome.closing': 'Esperamos veros a todos allí y que os hagamos sentir como en casa.',
     'welcome.signature': 'Anna y David',
 
     'program.title': 'Programa',
@@ -70,7 +71,8 @@ window.TRANSLATIONS = {
     'calendar.details': 'Empfang 12:30 · Trauung 13:00 · Sektempfang 14:00 · Hochzeitsessen 15:30 · Hochzeitsparty 18:00',
 
     'welcome.title': 'Willkommen',
-    'welcome.text': 'Wir freuen uns sehr, diesen so wichtigen Moment in unserem Leben mit euch zu teilen. Hier findet ihr alle wichtigen Informationen für den großen Tag.\n\nWir hoffen, euch alle dort zu sehen und dass ihr euch wie zu Hause fühlt.',
+    'welcome.text': 'Wir freuen uns sehr, diesen so wichtigen Moment in unserem Leben mit euch zu teilen. Hier findet ihr alle wichtigen Informationen für den großen Tag.',
+    'welcome.closing': 'Wir hoffen, euch alle dort zu sehen und dass ihr euch wie zu Hause fühlt.',
     'welcome.signature': 'Anna und David',
 
     'program.title': 'Tagesablauf',
@@ -119,7 +121,8 @@ window.TRANSLATIONS = {
     'calendar.details': 'Arrival 12:30 · Ceremony 13:00 · Drinks Reception 14:00 · Wedding Banquet 15:30 · Party 18:00',
 
     'welcome.title': 'Welcome',
-    'welcome.text': 'We are thrilled to share such an important moment in our lives with you. Here you will find all the information you need for the big day.\n\nWe hope to see you all there and make you feel right at home.',
+    'welcome.text': 'We are thrilled to share such an important moment in our lives with you. Here you will find all the information you need for the big day.',
+    'welcome.closing': 'We hope to see you all there and make you feel right at home.',
     'welcome.signature': 'Anna and David',
 
     'program.title': 'Schedule',
@@ -140,7 +143,7 @@ window.TRANSLATIONS = {
     'gift.copied': 'Copied!',
 
     'rsvp.title': 'Confirm your attendance',
-    'rsvp.note': 'Please RSVP by March 1, 2027.',
+    'rsvp.note': 'RSVP by March 1, 2027.',
     'rsvp.contact': 'If you have any questions, feel free to reach out to us!',
     'rsvp.closing': 'We can’t wait to see you!',
     'rsvp.button': 'RSVP form',
